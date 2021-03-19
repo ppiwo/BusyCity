@@ -11,5 +11,5 @@ module.exports = {
         },
       ],
     },
-    plugins: [new webpack.DefinePlugin({ 'process.env':{ 'API_KEY': 'REPLACE_API_KEY'} })],
+    plugins: [new webpack.DefinePlugin({ 'process.env':{ 'API_KEY': 'test999'} })],
   };

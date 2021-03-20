@@ -3,6 +3,7 @@ const dotenv = require('dotenv');
 
 module.exports = {
     mode: "development",
+    watch: true,
     module: {
       rules: [
         {

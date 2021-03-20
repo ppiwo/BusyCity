@@ -1,4 +1,10 @@
 import "./style/style.scss";
-import api from './js/api'
+import { getAllTrains } from './js/Api';
+import { initMap } from './js/GoogleMaps';
 
-console.log('key: ',  process.env.API_KEY);
+//get train data
+let trainData = getAllTrains();
+
+initMap();
+
+//

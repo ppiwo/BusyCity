@@ -11,7 +11,6 @@ export function initMap(){
       zoom: 15,
     });
 
-
     let kmlElTrackLayer = new google.maps.KmlLayer({
         url: trainLinesKmz,
         suppressInfoWindows: true,

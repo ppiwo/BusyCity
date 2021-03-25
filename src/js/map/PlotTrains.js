@@ -1,4 +1,5 @@
 import { getAllTrains } from "../API";
+import { addMarker } from "./BuildMap";
 
 /**
  * Calls API function to retrieve CTA data.
@@ -20,6 +21,17 @@ export async function trainDataParse() {
 export const plotTrains = async () => {
   try {
     let trainData = await trainDataParse();
+    trainData = trainData.data.ctatt.route;
+    trainData.forEach((route) => {
+      let lineColor = route["@name"];
+      if (route.train) {
+        route.train.forEach((train) => {
+          train.lat = parseFloat(train.lat);
+          train.lon = parseFloat(train.lon);
+          addMarker("train", train.lat, train.lon, train.heading);
+        });
+      }
+    });
   } catch (err) {
     console.error(err);
   }

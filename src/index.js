@@ -1,6 +1,8 @@
 import "./style/style.scss";
+import './style/bottom-bar.scss';
 import { initMap, deleteMarkers } from "./js/map/BuildMap";
 import { plotTrains } from "./js/map/PlotTrains";
+import { initUI } from "./js/ui/UIController";
 
 /**
  * ENTRY POINT
@@ -9,9 +11,10 @@ import { plotTrains } from "./js/map/PlotTrains";
  */
 (async function () {
   window.initMap = initMap;
-  plotTrains();
-  setInterval(function () {
-    deleteMarkers();
-    plotTrains();
-  }, 10000);
+  //plotTrains();
+  initUI();
+  // setInterval(function () {
+  //   deleteMarkers();
+  //   plotTrains();
+  // }, 10000);
 })();

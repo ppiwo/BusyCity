@@ -1,3 +1,4 @@
+import trainInfoTemplate from "../../templates/trainInfo.hbs";
 const trainLinesKmz = "http://patpiwo.dev/projects/busy-city/map-data/cta_el_tracks.kmz";
 
 let map;
@@ -11,7 +12,7 @@ export function initMap() {
   map = new google.maps.Map(document.getElementById("map"), {
     center: { lat: 41.881832, lng: -87.623177 },
     zoom: 15,
-    disableDefaultUI: true,
+    disableDefaultUI: true
   });
 
   new google.maps.KmlLayer({
@@ -24,18 +25,23 @@ export function initMap() {
 /**
  * Add a marker to the map and assign it an ID,
  * we assign an ID so we can update it's position later
- * @param {string} type Type of marker (currenly only 'train')
- * @param {number} lat Latitudinal position
- * @param {number} long Longitudinal position
- * @param {number} heading Heading (in degrees)
+ * @param {Object} markerInfo Contains info for each marker and it's infoWindow
  */
-export let addMarker = (type, lat, long, heading) => {
-  if (type === "train") {
+export let addMarker = (markerInfo) => {
+  if (markerInfo.type === "train") {
+    console.log(markerInfo);
     const marker = new google.maps.Marker({
-      position: { lat: lat, lng: long },
+      position: { lat: markerInfo.lat, lng: markerInfo.lon },
       map: map
     });
     markers.push(marker);
+
+    const infoWindow = new google.maps.InfoWindow({
+      content: trainInfo(markerInfo)
+    });
+
+    // Add event listener for train marker popup
+    marker.addListener("click", (e) => infoWindow.open(map, marker));
   }
 };
 
@@ -45,4 +51,17 @@ export let addMarker = (type, lat, long, heading) => {
 export let deleteMarkers = () => {
   markers.forEach((marker) => marker.setMap(null));
   markers = [];
+};
+
+/**
+ * Builds infoWindow for train markers
+ * REFERENCE: https://developers.google.com/maps/documentation/javascript/infowindows
+ * @param {Object} markerInfo - An object containing data for each train's InfoWindow
+ */
+export let trainInfo = (markerInfo) => {
+  const trainInfoContainer = document.getElementById("test-container");
+  console.log(markerInfo);
+  trainInfoContainer.innerHTML = trainInfoTemplate(markerInfo);
+
+  return trainInfoContainer;
 };

@@ -41,6 +41,8 @@
     "axios": "^0.21.1",
     "copy-webpack-plugin": "^8.0.0",
     "google-maps": "^4.3.3",
+    "handlebars": "^4.7.7",
+    "handlebars-loader": "^1.7.1",
     "html-webpack-plugin": "^5.3.1",
     "lodash": "^4.17.21",
     "style-loader": "^2.0.0"

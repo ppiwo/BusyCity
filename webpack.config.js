@@ -9,16 +9,23 @@ module.exports = {
     module: {
       rules: [
         {
-            test: /\.(scss|css)$/,
-            use: ['style-loader', 'css-loader', 'sass-loader'],
+          test: /\.(scss|css)$/,
+          use: ["style-loader", "css-loader", "sass-loader"]
         },
         {
-          test: /\.(png|jpe?g|gif|kml)$/i,
+          test: /\.(png|jpe?g|gif|kml|kmz)$/i,
           use: [
             {
-              loader: 'file-loader',
-            },
-          ],
+              loader: "file-loader"
+            }
+          ]
+        },
+        {
+          test: /\.hbs$/,
+          loader: "handlebars-loader",
+          options: {
+              helperDirs: path.resolve(__dirname, "src", "./templates/helpers")
+          }
         },
       ],
     },

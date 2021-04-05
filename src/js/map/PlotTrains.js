@@ -26,17 +26,39 @@ export const plotTrains = async () => {
       let lineColor = route["@name"];
       if (route.train !== undefined && route.train.length > 1) {
         route.train.forEach((train) => {
-          train.lat = parseFloat(train.lat);
-          train.lon = parseFloat(train.lon);
-          addMarker("train", train.lat, train.lon, train.heading);
+          let isDly;
+          if (train.isDly == true) isDly = true;
+          else isDly = false;
+          const markerInfo = {
+            type: "train",
+            trainID: parseInt(train.rn),
+            lat: parseFloat(train.lat),
+            lon: parseFloat(train.lon),
+            arrT: train.arrT,
+            isDly: isDly,
+            lineColor: lineColor,
+            nextStop: train.nextStaNm
+          };
+          addMarker(markerInfo);
         });
       } else {
         //handle train lines where there is only 1 or 0 trains running the route
         if (route.train !== undefined) {
           const train = route.train;
-          train.lat = parseFloat(train.lat);
-          train.lon = parseFloat(train.lon);
-          addMarker("train", train.lat, train.lon, train.heading);
+          let isDly;
+          if (train.isDly == true) isDly = true;
+          else isDly = false;
+          const markerInfo = {
+            type: "train",
+            trainID: parseInt(train.rn),
+            lat: parseFloat(train.lat),
+            lon: parseFloat(train.lon),
+            arrT: train.arrT,
+            isDly: isDly,
+            lineColor: lineColor,
+            nextStop: train.nextStaNm
+          };
+          addMarker(markerInfo);
         }
       }
     });

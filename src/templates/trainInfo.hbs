@@ -1,0 +1,9 @@
+<div class="train-info-container">
+    <div class="header">
+        <span>{{trainID}}</span>
+        <span>{{destination}}</span>
+    </div>
+    <span>Next Stop</span>
+    <span>{{nextStop}} {{[helpers/calculateArrival] arrT}} min</span>
+    {{#if isDly}}<span>Delayed</span>{{/if}}
+</div>

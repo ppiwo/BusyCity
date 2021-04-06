@@ -1,5 +1,5 @@
 import "./style/style.scss";
-import "./style/bottom-bar.scss";
+import "./style/info-windows.scss";
 import { initMap } from "./js/map/BuildMap";
 import { plotTrains } from "./js/map/PlotTrains";
 

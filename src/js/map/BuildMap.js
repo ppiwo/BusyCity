@@ -34,14 +34,11 @@ export let addMarker = (markerInfo) => {
       position: { lat: markerInfo.lat, lng: markerInfo.lon },
       map: map
     });
+    
     markers.push(marker);
 
-    const infoWindow = new google.maps.InfoWindow({
-      content: trainInfo(markerInfo)
-    });
-
-    // Add event listener for train marker popup
-    marker.addListener("click", (e) => infoWindow.open(map, marker));
+    // Add listener for train marker popup on click
+    marker.addListener('click', (e) => buildInfoWindow(map, marker, markerInfo));
   }
 };
 
@@ -54,14 +51,32 @@ export let deleteMarkers = () => {
 };
 
 /**
- * Builds infoWindow for train markers
+ * Parses markerInfo into HTML template using Handlebars
  * REFERENCE: https://developers.google.com/maps/documentation/javascript/infowindows
  * @param {Object} markerInfo - An object containing data for each train's InfoWindow
+ * @returns {Object} HTML content to be displayed in infoWindow
  */
 export let trainInfo = (markerInfo) => {
-  const trainInfoContainer = document.getElementById("test-container");
+  console.log(markerInfo)
+  const trainInfoContainer = document.getElementById('custom-info-window');
   console.log(markerInfo);
   trainInfoContainer.innerHTML = trainInfoTemplate(markerInfo);
+  trainInfoContainer.classList = '';
+  trainInfoContainer.classList.add(`info-window__${markerInfo.lineColor}`);
 
   return trainInfoContainer;
-};
+}
+
+/**
+ * Builds and opens a infoWindow on the map
+ * @param {Object} map Map on which infoWindow will be place
+ * @param {Object} marker  Marker which this infoWindow belongs to
+ * @param {Object} markerInfo Data to be displayed inside of the infoWindow
+ * @returns {Object} infoWindow object
+ */
+const buildInfoWindow = (map, marker, markerInfo) => {
+  const infoWindow = new google.maps.InfoWindow({
+    content: trainInfo(markerInfo)
+  });
+  return infoWindow.open(map, marker);
+}

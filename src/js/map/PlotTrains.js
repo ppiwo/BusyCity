@@ -26,6 +26,7 @@ export const plotTrains = async () => {
       let lineColor = route["@name"];
       if (route.train !== undefined && route.train.length > 1) {
         route.train.forEach((train) => {
+          console.log(train)
           let isDly;
           if (train.isDly == true) isDly = true;
           else isDly = false;
@@ -37,7 +38,8 @@ export const plotTrains = async () => {
             arrT: train.arrT,
             isDly: isDly,
             lineColor: lineColor,
-            nextStop: train.nextStaNm
+            nextStop: train.nextStaNm,
+            destination: train.destNm,
           };
           addMarker(markerInfo);
         });

@@ -1,0 +1,18 @@
+@import './variables.scss';
+
+/**************************************************
+/**              GOOGLE MAPS RESET               **
+/*************************************************/
+.gm-ui-hover-effect { display: none !important; }
+.gm-style-iw.gm-style-iw-c { padding: 0; border-radius: 3px; }
+.gm-style-iw-d { overflow: auto !important; }
+
+/**************************************************
+/**       CUSTOM INFO WINDOW STYLE               **
+/*************************************************/
+#custom-info-window {
+    border: 2px solid;
+   &.info-window__red { border-color: $cta-red; }
+   &.info-window__blue { border-color: $cta-blue; }
+   &.info-window__brn { border-color: $cta-brown; }
+}

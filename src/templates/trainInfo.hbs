@@ -1,9 +1,11 @@
 <div class="train-info-container">
-    <div class="header">
-        <span>{{trainID}}</span>
-        <span>{{destination}}</span>
+    <div class="train-info-header ">
+        <h3 class="train-id">Run #{{trainID}}</h3>
+        <h3 class="destination">{{destination}}</h3>
     </div>
-    <span>Next Stop</span>
-    <span>{{nextStop}} {{[helpers/calculateArrival] arrT}} min</span>
-    {{#if isDly}}<span>Delayed</span>{{/if}}
+    <div class="train-info-window">
+        <h4 class="next-stop">Next Stop</h4>
+        <h4 class="calculated-arrival">{{nextStop}} ({{[helpers/calculateArrival] arrT}} min)</h4>
+        {{#if isDly}}<span class="delayed">Delayed</span>{{/if}}
+    </div>
 </div>

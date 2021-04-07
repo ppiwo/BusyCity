@@ -2,7 +2,7 @@ import trainInfoTemplate from "../../templates/trainInfo.hbs";
 const trainLinesKmz = "http://patpiwo.dev/projects/busy-city/map-data/cta_el_tracks.kmz";
 
 let map;
-let markers = [];
+let trainMarkers = [];
 
 /**
  * Init map and add KML layers with CTA Routes & Train Stations
@@ -10,9 +10,10 @@ let markers = [];
  */
 export function initMap() {
   map = new google.maps.Map(document.getElementById("map"), {
+    mapId: "4520b10c36453300",
     center: { lat: 41.881832, lng: -87.623177 },
     zoom: 15,
-    disableDefaultUI: true
+    disableDefaultUI: false
   });
 
   new google.maps.KmlLayer({
@@ -29,16 +30,19 @@ export function initMap() {
  */
 export let addMarker = (markerInfo) => {
   if (markerInfo.type === "train") {
-    console.log(markerInfo);
+    //if (!markerIsUnique(markerInfo.trainID)) //deleteMarkers(marker)
     const marker = new google.maps.Marker({
       position: { lat: markerInfo.lat, lng: markerInfo.lon },
       map: map
     });
-    
-    markers.push(marker);
+
+    trainMarkers.push({ trainID: markerInfo.trainID, marker: marker });
+    console.log(trainMarkers);
 
     // Add listener for train marker popup on click
-    marker.addListener('click', (e) => buildInfoWindow(map, marker, markerInfo));
+    marker.addListener("click", () => {
+      buildInfoWindow(map, marker, markerInfo);
+    });
   }
 };
 
@@ -57,15 +61,15 @@ export let deleteMarkers = () => {
  * @returns {Object} HTML content to be displayed in infoWindow
  */
 export let trainInfo = (markerInfo) => {
-  console.log(markerInfo)
-  const trainInfoContainer = document.getElementById('custom-info-window');
+  console.log(markerInfo);
+  const trainInfoContainer = document.getElementById("custom-info-window");
   console.log(markerInfo);
   trainInfoContainer.innerHTML = trainInfoTemplate(markerInfo);
-  trainInfoContainer.classList = '';
+  trainInfoContainer.classList = "";
   trainInfoContainer.classList.add(`info-window__${markerInfo.lineColor}`);
 
   return trainInfoContainer;
-}
+};
 
 /**
  * Builds and opens a infoWindow on the map
@@ -78,5 +82,19 @@ const buildInfoWindow = (map, marker, markerInfo) => {
   const infoWindow = new google.maps.InfoWindow({
     content: trainInfo(markerInfo)
   });
-  return infoWindow.open(map, marker);
-}
+  map.zoom = 13;
+  map.panTo(marker.getPosition());
+  infoWindow.open(map, marker);
+
+  return infoWindow;
+};
+
+/**
+ * Check if there are existing markers for this train already on the map
+ * @param {*} trainID Train ID we are checking for duplicates on
+ */
+const markerIsUnique = (trainID) => {
+  let duplicateMarkers = trainMarkers.filter((train) => train.trainID === trainID).length > 0;
+  if (duplicateMarkers) return false;
+  else return true;
+};

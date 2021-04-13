@@ -26,32 +26,48 @@ export function initMap() {
 /**
  * Add a marker to the map and assign it an ID,
  * we assign an ID so we can update it's position later
+ * IF the marker exists, we call updateMarker to update it's location
  * @param {Object} markerInfo Contains info for each marker and it's infoWindow
  */
 export let addMarker = (markerInfo) => {
   if (markerInfo.type === "train") {
-    //if (!markerIsUnique(markerInfo.trainID)) //deleteMarkers(marker)
-    const marker = new google.maps.Marker({
-      position: { lat: markerInfo.lat, lng: markerInfo.lon },
-      map: map
-    });
+    let markerIndex = getTrain(markerInfo);
+    // If marker is not found, add it
+    if (markerIndex === -1) {
+      const marker = new google.maps.Marker({
+        position: { lat: markerInfo.lat, lng: markerInfo.lon },
+        map: map
+      });
 
-    trainMarkers.push({ trainID: markerInfo.trainID, marker: marker });
-    console.log(trainMarkers);
-
-    // Add listener for train marker popup on click
-    marker.addListener("click", () => {
-      buildInfoWindow(map, marker, markerInfo);
-    });
+      trainMarkers.push({ trainID: markerInfo.trainID, marker: marker });
+      // Add listener for train marker popup on click
+      marker.addListener("click", () => {
+        buildInfoWindow(map, marker, markerInfo);
+        console.log(markerInfo)
+      });
+      // Marker already exists, let's update it
+    } else {
+      updateMarker(markerInfo, markerIndex);
+    }
   }
 };
 
 /**
- * Clears all markers off of the map
+ * Check if there is an existing marker for this train already on the map
+ * @param {Object} markerInfo Marker we are looking for
  */
-export let deleteMarkers = () => {
-  markers.forEach((marker) => marker.setMap(null));
-  markers = [];
+const getTrain = (markerInfo) => {
+  let trainMarkerIndex = trainMarkers.findIndex((marker) => marker.trainID === markerInfo.trainID);
+  return trainMarkerIndex;
+};
+
+/**
+ * Update a marker's position on the map
+ * @param {*} markerInfo New markerInfo
+ * @param {*} markerIndex Index of the marker being updated
+ */
+let updateMarker = (markerInfo, markerIndex) => {
+  trainMarkers[markerIndex].marker.setPosition(new google.maps.LatLng(markerInfo.lat, markerInfo.lon));
 };
 
 /**
@@ -61,9 +77,7 @@ export let deleteMarkers = () => {
  * @returns {Object} HTML content to be displayed in infoWindow
  */
 export let trainInfo = (markerInfo) => {
-  console.log(markerInfo);
   const trainInfoContainer = document.getElementById("custom-info-window");
-  console.log(markerInfo);
   trainInfoContainer.innerHTML = trainInfoTemplate(markerInfo);
   trainInfoContainer.classList = "";
   trainInfoContainer.classList.add(`info-window__${markerInfo.lineColor}`);
@@ -87,14 +101,4 @@ const buildInfoWindow = (map, marker, markerInfo) => {
   infoWindow.open(map, marker);
 
   return infoWindow;
-};
-
-/**
- * Check if there are existing markers for this train already on the map
- * @param {*} trainID Train ID we are checking for duplicates on
- */
-const markerIsUnique = (trainID) => {
-  let duplicateMarkers = trainMarkers.filter((train) => train.trainID === trainID).length > 0;
-  if (duplicateMarkers) return false;
-  else return true;
 };

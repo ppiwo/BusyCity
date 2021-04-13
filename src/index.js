@@ -14,5 +14,5 @@ window.initMap = initMap;
 plotTrains();
 setInterval(function () {
   plotTrains();
-}, 10000);
+}, 5000);
 

@@ -1,5 +1,5 @@
-import { getAllTrains } from "../API";
-import { addMarker } from "./BuildMap";
+import { getAllTrains } from "../api";
+import { addMarker } from "./build-map";
 
 /**
  * Calls API function to retrieve CTA data.

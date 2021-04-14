@@ -2,7 +2,7 @@ import trainInfoTemplate from "../../templates/trainInfo.hbs";
 const trainLinesKmz = "http://patpiwo.dev/projects/busy-city/map-data/cta_el_tracks.kmz";
 
 let map;
-let trainMarkers = [];
+let trainMarkers = {};
 
 /**
  * Init map and add KML layers with CTA Routes & Train Stations
@@ -31,23 +31,22 @@ export function initMap() {
  */
 export let addMarker = (markerInfo) => {
   if (markerInfo.type === "train") {
-    let markerIndex = getTrain(markerInfo);
+    let markerExists = getTrain(markerInfo);
     // If marker is not found, add it
-    if (markerIndex === -1) {
+    if (!markerExists) {
       const marker = new google.maps.Marker({
         position: { lat: markerInfo.lat, lng: markerInfo.lon },
         map: map
       });
 
-      trainMarkers.push({ trainID: markerInfo.trainID, marker: marker });
+      trainMarkers[markerInfo.trainID] = marker;
       // Add listener for train marker popup on click
       marker.addListener("click", () => {
         buildInfoWindow(map, marker, markerInfo);
-        console.log(markerInfo)
       });
       // Marker already exists, let's update it
     } else {
-      updateMarker(markerInfo, markerIndex);
+      updateMarker(markerInfo);
     }
   }
 };
@@ -57,17 +56,18 @@ export let addMarker = (markerInfo) => {
  * @param {Object} markerInfo Marker we are looking for
  */
 const getTrain = (markerInfo) => {
-  let trainMarkerIndex = trainMarkers.findIndex((marker) => marker.trainID === markerInfo.trainID);
-  return trainMarkerIndex;
+  const trainID = markerInfo.trainID;
+  if (trainMarkers[trainID]) return true;
+  else return false;
 };
 
 /**
  * Update a marker's position on the map
  * @param {*} markerInfo New markerInfo
- * @param {*} markerIndex Index of the marker being updated
  */
-let updateMarker = (markerInfo, markerIndex) => {
-  trainMarkers[markerIndex].marker.setPosition(new google.maps.LatLng(markerInfo.lat, markerInfo.lon));
+let updateMarker = (markerInfo) => {
+  const trainID = markerInfo.trainID;
+  trainMarkers[trainID].setPosition(new google.maps.LatLng(markerInfo.lat, markerInfo.lon));
 };
 
 /**

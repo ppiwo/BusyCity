@@ -1,5 +1,5 @@
 import { getAllTrains } from "../api";
-import { addMarker } from "./build-map";
+import { addMarker, mapTick } from "./build-map";
 
 /**
  * Calls API function to retrieve CTA data.
@@ -26,16 +26,13 @@ export const plotTrains = async () => {
       let lineColor = route["@name"];
       if (route.train !== undefined && route.train.length > 1) {
         route.train.forEach((train) => {
-          let isDly;
-          if (train.isDly == true) isDly = true;
-          else isDly = false;
           const markerInfo = {
             type: "train",
             trainID: parseInt(train.rn),
             lat: parseFloat(train.lat),
             lon: parseFloat(train.lon),
             arrT: train.arrT,
-            isDly: isDly,
+            isDly: train.isDly == 1 ? true : false,
             lineColor: lineColor,
             nextStop: train.nextStaNm,
             destination: train.destNm,
@@ -55,9 +52,10 @@ export const plotTrains = async () => {
             lat: parseFloat(train.lat),
             lon: parseFloat(train.lon),
             arrT: train.arrT,
-            isDly: isDly,
+            isDly: train.isDly == 1 ? true : false,
             lineColor: lineColor,
-            nextStop: train.nextStaNm
+            nextStop: train.nextStaNm,
+            destination: train.destNm,
           };
           addMarker(markerInfo);
         }
@@ -66,4 +64,6 @@ export const plotTrains = async () => {
   } catch (err) {
     console.error(err);
   }
+  // Markers updated, check if rest of map needs to update
+  mapTick();
 };

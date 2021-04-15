@@ -1,8 +1,9 @@
 import trainInfoTemplate from "../../templates/trainInfo.hbs";
 const trainLinesKmz = "http://patpiwo.dev/projects/busy-city/map-data/cta_el_tracks.kmz";
 
-let map;
-let trainMarkers = {};
+export let map;
+export let trainMarkers = {};
+let infoWindowOpen = undefined;
 
 /**
  * Init map and add KML layers with CTA Routes & Train Stations
@@ -20,6 +21,12 @@ export function initMap() {
     url: trainLinesKmz,
     suppressInfoWindows: true,
     map: map
+  });
+
+  google.maps.event.addListener(map, "click", function (event) {
+    if (infoWindowOpen) {
+      infoWindowOpen.infoWindow.content.style.display = "none";
+    }
   });
 }
 
@@ -81,6 +88,8 @@ export let trainInfo = (markerInfo) => {
   trainInfoContainer.innerHTML = trainInfoTemplate(markerInfo);
   trainInfoContainer.classList = "";
   trainInfoContainer.classList.add(`info-window__${markerInfo.lineColor}`);
+  // Remove display none if it's there
+  trainInfoContainer.style.display = "";
 
   return trainInfoContainer;
 };
@@ -96,9 +105,22 @@ const buildInfoWindow = (map, marker, markerInfo) => {
   const infoWindow = new google.maps.InfoWindow({
     content: trainInfo(markerInfo)
   });
-  map.zoom = 13;
+  map.zoom = 16;
   map.panTo(marker.getPosition());
   infoWindow.open(map, marker);
+  infoWindowOpen = { infoWindow, marker };
 
   return infoWindow;
+};
+
+/**
+ * Map markers have been updated - update everything else
+ */
+export const mapTick = () => {
+  // TODO refresh infoWindow
+  //TODO move functionalities to their own methods
+  if (infoWindowOpen) {
+    const markerPosition = infoWindowOpen.marker.getPosition();
+    infoWindowOpen.infoWindow.map.panTo(markerPosition);
+  }
 };

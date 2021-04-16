@@ -61,9 +61,9 @@ export const plotTrains = async () => {
         }
       }
     });
+    mapTick();
   } catch (err) {
     console.error(err);
   }
   // Markers updated, check if rest of map needs to update
-  mapTick();
 };

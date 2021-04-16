@@ -23,9 +23,11 @@ export function initMap() {
     map: map
   });
 
-  google.maps.event.addListener(map, "click", function (event) {
+  // When any part of the map except the marker or infowindow is clicked
+  map.addListener("click", () => {
     if (infoWindowOpen) {
-      infoWindowOpen.infoWindow.content.style.display = "none";
+      infoWindowOpen.infoWindow.close();
+      infoWindowOpen = undefined;
     }
   });
 }
@@ -39,6 +41,7 @@ export function initMap() {
 export let addMarker = (markerInfo) => {
   if (markerInfo.type === "train") {
     let markerExists = getTrain(markerInfo);
+
     // If marker is not found, add it
     if (!markerExists) {
       const marker = new google.maps.Marker({
@@ -47,10 +50,13 @@ export let addMarker = (markerInfo) => {
       });
 
       trainMarkers[markerInfo.trainID] = marker;
+
       // Add listener for train marker popup on click
       marker.addListener("click", () => {
+        if (infoWindowOpen) infoWindowOpen.infoWindow.close();
         buildInfoWindow(map, marker, markerInfo);
       });
+
       // Marker already exists, let's update it
     } else {
       updateMarker(markerInfo);
@@ -73,8 +79,10 @@ const getTrain = (markerInfo) => {
  * @param {*} markerInfo New markerInfo
  */
 let updateMarker = (markerInfo) => {
-  const trainID = markerInfo.trainID;
-  trainMarkers[trainID].setPosition(new google.maps.LatLng(markerInfo.lat, markerInfo.lon));
+  const trainID = markerInfo.trainID,
+    markerNewPosition = new google.maps.LatLng(markerInfo.lat, markerInfo.lon);
+
+  trainMarkers[trainID].setPosition(markerNewPosition);
 };
 
 /**
@@ -84,14 +92,13 @@ let updateMarker = (markerInfo) => {
  * @returns {Object} HTML content to be displayed in infoWindow
  */
 export let trainInfo = (markerInfo) => {
-  const trainInfoContainer = document.getElementById("custom-info-window");
-  trainInfoContainer.innerHTML = trainInfoTemplate(markerInfo);
-  trainInfoContainer.classList = "";
-  trainInfoContainer.classList.add(`info-window__${markerInfo.lineColor}`);
-  // Remove display none if it's there
-  trainInfoContainer.style.display = "";
+  const infoWindowElement = document.createElement("section");
 
-  return trainInfoContainer;
+  infoWindowElement.id = "custom-info-window";
+  infoWindowElement.innerHTML = trainInfoTemplate(markerInfo);
+  infoWindowElement.classList.add(`info-window__${markerInfo.lineColor}`);
+
+  return infoWindowElement;
 };
 
 /**
@@ -105,6 +112,7 @@ const buildInfoWindow = (map, marker, markerInfo) => {
   const infoWindow = new google.maps.InfoWindow({
     content: trainInfo(markerInfo)
   });
+
   map.zoom = 16;
   map.panTo(marker.getPosition());
   infoWindow.open(map, marker);
@@ -116,11 +124,11 @@ const buildInfoWindow = (map, marker, markerInfo) => {
 /**
  * Map markers have been updated - update everything else
  */
-export const mapTick = () => {
-  // TODO refresh infoWindow
-  //TODO move functionalities to their own methods
-  if (infoWindowOpen) {
-    const markerPosition = infoWindowOpen.marker.getPosition();
-    infoWindowOpen.infoWindow.map.panTo(markerPosition);
-  }
+export const mapTick = async () => {
+  if (infoWindowOpen) refreshInfoWindow();
 };
+
+/**
+ * Refresh Info Window Content
+ */
+const refreshInfoWindow = () => {};

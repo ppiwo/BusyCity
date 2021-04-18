@@ -1,5 +1,5 @@
 import { getAllTrains } from "../api";
-import { addMarker, mapTick } from "./build-map";
+import { addMarker } from "./build-map";
 
 /**
  * Calls API function to retrieve CTA data.
@@ -61,9 +61,7 @@ export const plotTrains = async () => {
         }
       }
     });
-    mapTick();
   } catch (err) {
     console.error(err);
   }
-  // Markers updated, check if rest of map needs to update
 };

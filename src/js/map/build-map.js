@@ -62,6 +62,9 @@ export let addMarker = (markerInfo) => {
       updateMarker(markerInfo);
     }
   }
+
+  // If the current trainData is an opened windowInfo, we need to update infoWindow
+  if (infoWindowOpen && currentInfoWindow(markerInfo) === true) updateInfoWindow(markerInfo);
 };
 
 /**
@@ -116,19 +119,28 @@ const buildInfoWindow = (map, marker, markerInfo) => {
   map.zoom = 16;
   map.panTo(marker.getPosition());
   infoWindow.open(map, marker);
-  infoWindowOpen = { infoWindow, marker };
+  infoWindowOpen = { infoWindow, marker, trainID: markerInfo.trainID };
 
   return infoWindow;
 };
 
 /**
- * Map markers have been updated - update everything else
+ * Update the infoWindow object
+ * @param {Object} markerInfo
  */
-export const mapTick = async () => {
-  if (infoWindowOpen) refreshInfoWindow();
+const updateInfoWindow = (markerInfo) => {
+  const infoWindowElement = document.querySelector("#custom-info-window"),
+    markerPosition = infoWindowOpen.marker.getPosition();
+
+  infoWindowElement.innerHTML = trainInfoTemplate(markerInfo);
+  map.panTo(markerPosition);
 };
 
 /**
- * Refresh Info Window Content
+ * Current marker being updated has it's infoWindow open
+ * @param {Object} markerInfo
+ * @returns {Boolean}
  */
-const refreshInfoWindow = () => {};
+const currentInfoWindow = (markerInfo) => {
+  if (infoWindowOpen.trainID === markerInfo.trainID) return true;
+};

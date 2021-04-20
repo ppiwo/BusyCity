@@ -1,4 +1,15 @@
 import trainInfoTemplate from "../../templates/trainInfo.hbs";
+
+var redMarker = require("svg-inline-loader?classPrefix!../../assets/icons/markers/red_marker.svg");
+var blueMarker = require("svg-inline-loader?classPrefix!../../assets/icons/markers/blue_marker.svg");
+var brownMarker = require("svg-inline-loader?classPrefix!../../assets/icons/markers/brown_marker.svg");
+var greenMarker = require("svg-inline-loader?classPrefix!../../assets/icons/markers/green_marker.svg");
+var orangeMarker = require("svg-inline-loader?classPrefix!../../assets/icons/markers/orange_marker.svg");
+var purpleMarker = require("svg-inline-loader?classPrefix!../../assets/icons/markers/purple_marker.svg");
+var pinkMarker = require("svg-inline-loader?classPrefix!../../assets/icons/markers/pink_marker.svg");
+var yellowMarker = require("svg-inline-loader?classPrefix!../../assets/icons/markers/yellow_marker.svg");
+var greyMarker = require("svg-inline-loader?classPrefix!../../assets/icons/markers/grey_marker.svg");
+
 const trainLinesKmz = "http://patpiwo.dev/projects/busy-city/map-data/cta_el_tracks.kmz";
 
 export let map;
@@ -46,6 +57,8 @@ export let addMarker = (markerInfo) => {
     if (!markerExists) {
       const marker = new google.maps.Marker({
         position: { lat: markerInfo.lat, lng: markerInfo.lon },
+        icon: buildMarker(markerInfo),
+        size: new google.maps.Size(18, 15),
         map: map
       });
 
@@ -65,6 +78,56 @@ export let addMarker = (markerInfo) => {
 
   // If the current trainData is an opened windowInfo, we need to update infoWindow
   if (infoWindowOpen && currentInfoWindow(markerInfo) === true) updateInfoWindow(markerInfo);
+};
+
+/**
+ *  Build a custom marker for each train
+ */
+const buildMarker = (markerInfo) => {
+  if (markerInfo) {
+    let lineColor = markerInfo.lineColor;
+
+    switch (lineColor) {
+      case "red":
+        lineColor = "#C60C30";
+        break;
+      case "blue":
+        lineColor = "#00a1de";
+        break;
+      case "brn":
+        lineColor = "#62361b";
+        break;
+      case "g":
+        lineColor = "#009b3a";
+        break;
+      case "org":
+        lineColor = "#f9461c";
+        break;
+      case "p":
+        lineColor = "#522398;";
+        break;
+      case "pink":
+        lineColor = "#e27ea6";
+        break;
+      case "yellow":
+        lineColor = "#f9e300";
+        break;
+      case "grey":
+        lineColor = "#565a5c";
+        break;
+    }
+
+    const marker = {
+      path: google.maps.SymbolPath.CIRCLE,
+      //rotation: 180,
+      scale: 9,
+      strokeColor: "white",
+      strokeWeight: 1,
+      fillColor: lineColor,
+      fillOpacity: 1.0
+    };
+    return marker;
+  }
 };
 
 /**

@@ -1,0 +1,10 @@
+.drawer-pane {
+    position: absolute;
+    width: 100%;
+    background-color: #D8D8D8;
+    bottom: 42px;
+    transition: transform .46s ease-in-out;
+    &.active {
+        transform: translateY(-100%);
+    }
+  }

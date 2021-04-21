@@ -1,0 +1,29 @@
+<div id="drawer-settings" class="drawer-pane">
+    <div class="accordion drawer-pane-child">
+        <ul class="accordion-category">
+            <li class="accordion-item">
+                <div class="accordion-header">
+                    <span class="item-title">Filter Train Lines</span>
+                    {{!-- TODO arrow down/up icon --}}
+                    <span>+</span> 
+                </div>
+                <ul class="accordion-content">
+                    {{#each trainLine}}
+                    <li class="trainLine">
+                        <label for="toggle-{{lineColor}}">{{lineColor}} Line:</label>
+                        <div id="toggle-{{lineColor}}" toggle-line="{{lineColor}}"></div>
+                    </li>
+                    {{/each}}
+                </ul>
+            </li>
+        </ul>
+    </div>
+    <div class="drawer-pane-child marker-size"></div>
+    <div class="drawer-pane-child train-id-labels"></div>
+</div>
+<div id="drawer-locate" class="drawer-pane">
+    <p>Locate</p>
+</div>
+<div id="drawer-about" class="drawer-pane">
+    <p>About</p>
+</div>

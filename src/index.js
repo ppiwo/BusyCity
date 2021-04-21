@@ -1,7 +1,3 @@
-import 'normalize.css';
-import "./style/style.scss";
-import "./style/info-windows.scss";
-import "./style/navbar.scss";
 import './js/ui/ui'
 import { initMap } from "./js/map/build-map";
 import { plotTrains } from "./js/map/plot-trains";
@@ -13,8 +9,8 @@ import { plotTrains } from "./js/map/plot-trains";
  */
 
 window.initMap = initMap;
-plotTrains();
+//plotTrains();
 setInterval(function () {
-  plotTrains();
+  //plotTrains();
 }, 5000);
 

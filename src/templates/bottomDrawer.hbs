@@ -8,10 +8,10 @@
                     <span>+</span> 
                 </div>
                 <ul class="accordion-content">
-                    {{#each trainLine}}
+                    {{#each settings.trainLine}}
                     <li class="trainLine">
-                        <label for="toggle-{{lineColor}}">{{lineColor}} Line:</label>
-                        <div id="toggle-{{lineColor}}" toggle-line="{{lineColor}}"></div>
+                        <label for="toggle-{{thislineColor}}">{{lineColor}} Line:</label>
+                        <input id="toggle-{{lineColor}}" type="checkbox" toggle-line="{{lineColor}}"></input>
                     </li>
                     {{/each}}
                 </ul>

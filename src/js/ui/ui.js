@@ -15,8 +15,29 @@ const icons = {
     about: aboutIcon,
 }
 
+const bottomDrawerContent = {
+    settings: {
+        trainLine: [
+            { lineColor: 'Red' },
+            { lineColor: 'Blue' },
+            { lineColor: 'Brown' },
+            { lineColor: 'Green' },
+            { lineColor: 'Orange' },
+            { lineColor: 'Purple' },
+            { lineColor: 'Pink' },
+            { lineColor: 'Yellow' },
+        ]
+    },
+    locate: {
+
+    },
+    about: {
+
+    },
+}
+
 document.getElementById('navbar').innerHTML = navBar(icons);
-document.getElementById('bottom-drawer').innerHTML = bottomDrawer();
+document.getElementById('bottom-drawer').innerHTML = bottomDrawer(bottomDrawerContent);
 
 
     const bottomDrawerIcons = document.querySelectorAll('[data-open]');

@@ -1,4 +1,4 @@
-@import "./variables.scss";
+@use "./utils/variables";
 
 /**************************************************
 /**              GOOGLE MAPS RESET               **
@@ -24,9 +24,9 @@
 #custom-info-window {
   border: 2px solid; text-align: center;
   &.info-window__red {
-    border-color: $cta-red;
+    @include variables.cta-colors('border-color'Red');
     .train-info-header {
-      background: $cta-red;
+      @include variables.cta-colors('background-color,'Red');
     }
   }
   &.info-window__blue {

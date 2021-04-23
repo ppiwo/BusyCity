@@ -1,0 +1,43 @@
+
+
+
+/**************************************************
+/**                     FONTS                    **
+/*************************************************/
+@mixin ff-pro-display {
+    @font-face {
+        font-family: 'SFProDisplay';
+        src: url(/src/assets/fonts/SFProDisplay-Regular.woff2) format("woff2");
+    }
+    font-family: "SFProDisplay", sans-serif;
+}
+@mixin ff-pro-display-heavy {
+    @font-face {
+        font-family: 'SFProDisplay-Heavy';
+        src: url(/src/assets/fonts/SFProDisplay-Heavy.woff2) format("woff2");
+    }
+    font-family: "SFProDisplay-Heavy", sans-serif;
+}
+
+
+/**************************************************
+/**                ROOT VARIABLES                **
+/*************************************************/
+:root {
+    --bottom-bar-height: 0;
+}
+
+/**************************************************
+/**                COMMON VARIABLES              **
+/*************************************************/
+@mixin cta-colors($property, $color) {
+    #{$property}: #C60C30;
+    $cta-blue: #00a1de;
+    $cta-brown: #62361b;
+    $cta-green: #009b3a;
+    $cta-orange: #f9461c;
+    $cta-purple: #522398;
+    $cta-pink: #e27ea6;
+    $cta-yellow: #f9e300;
+    $cta-grey: #565a5c;
+}

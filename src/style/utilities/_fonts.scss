@@ -1,0 +1,26 @@
+@font-face {
+    font-family: "SFProDisplay, sans-serif";
+    font-weight: 100;
+    font-style: normal;
+    font-display: swap; /* Read next point */
+    unicode-range: U+000-5FF; /* Download only latin glyphs */
+    src: local("SFProDisplay"), url("/src/assets/fonts/SFProDisplay-Regular.woff2") format("woff2");
+  }
+  
+  @font-face {
+    font-family: "SFProDisplay, sans-serif";
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap; /* Read next point */
+    unicode-range: U+000-5FF; /* Download only latin glyphs */
+    src: local("SFProDisplay"), url("/src/assets/fonts/SFProDisplay-Semibold.woff2") format("woff2");
+  }
+  
+  @font-face {
+    font-family: "SFProDisplay, sans-serif";
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap; /* Read next point */
+    unicode-range: U+000-5FF; /* Download only latin glyphs */
+    src: local("SFProDisplay"), url("/src/assets/fonts/SFProDisplay-Heavy.woff2") format("woff2");
+  }

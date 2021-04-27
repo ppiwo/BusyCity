@@ -1,0 +1,15 @@
+@use './utilities' as *;
+@use './components';
+@use './base';
+
+
+body { margin: 0; }
+#map { height: 100vh; }
+
+/**************************************************
+/**                ROOT VARIABLES                **
+/*************************************************/
+:root {
+    --bottom-bar-height: 0;
+}
+

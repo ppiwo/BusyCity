@@ -14,14 +14,14 @@ export const icons = {
 export const bottomDrawerContent = {
   settings: {
     trainLine: [
-      { lineColor: 'Red' },
-      { lineColor: 'Blue' },
-      { lineColor: 'Brown' },
-      { lineColor: 'Green' },
-      { lineColor: 'Orange' },
-      { lineColor: 'Purple' },
-      { lineColor: 'Pink' },
-      { lineColor: 'Yellow' },
+      { lineColor: 'red' },
+      { lineColor: 'blue' },
+      { lineColor: 'brn' },
+      { lineColor: 'g' },
+      { lineColor: 'org' },
+      { lineColor: 'p' },
+      { lineColor: 'pink' },
+      { lineColor: 'y' },
     ],
   },
   locate: {},

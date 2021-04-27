@@ -1,3 +1,4 @@
+import './style/Main.scss';
 import initUI from './js/ui/ui';
 import { initMap } from './js/map/build-map';
 import { plotTrains } from './js/map/plot-trains';
@@ -10,7 +11,7 @@ import { plotTrains } from './js/map/plot-trains';
 
 window.initMap = initMap;
 initUI();
-//plotTrains();
+plotTrains();
 setInterval(function () {
-  //plotTrains();
-}, 5000);
+  plotTrains();
+}, 10000);

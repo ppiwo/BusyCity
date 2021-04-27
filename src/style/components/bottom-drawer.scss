@@ -1,0 +1,22 @@
+@use '../utilities/variables';
+@use './bottom-drawer-settings';
+
+#bottom-drawer {
+  position: fixed;
+  bottom: var(--bottom-bar-height);
+}
+.drawer-pane {
+  position: absolute;
+  top: 0;
+  width: 100vw;
+  background-color: #d8d8d8;
+  transition: transform 0.46s ease-in-out;
+  height: 400px;
+  &.active {
+    transform: translateY(-100%);
+  }
+  .coming-soon { padding-top: 15px; }
+}
+
+
+

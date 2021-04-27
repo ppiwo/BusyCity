@@ -1,4 +1,4 @@
-import { getAllTrains } from "../api";
+import { getTrains } from "../api";
 import { addMarker } from "./build-map";
 
 /**
@@ -7,7 +7,7 @@ import { addMarker } from "./build-map";
  * @return {Object} Train data in JSON format
  */
 export async function trainDataParse() {
-  let trainData = await getAllTrains();
+  let trainData = await getTrains();
   if (trainData && trainData.status === 200) {
     return trainData;
   } else {

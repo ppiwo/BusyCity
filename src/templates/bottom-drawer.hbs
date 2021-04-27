@@ -1,0 +1,47 @@
+<div id="drawer-settings" class="drawer-pane">
+    <div class="pane-header"><h2>Settings</h2></div>
+    <div class="pane-content">
+        <div class="pane-tabs">
+            <a href="#" title="Train Settings"><h3 class="section-label active" data-toggle-tab="train">Train</h3></a>
+            <a href="#" title="Bus Settings"><h3 class="section-label" data-toggle-tab="bus">Bus</h3></a>
+            <a href="#" title="Misc Settings"><h3 class="section-label" data-toggle-tab="misc">Misc</h3></a>
+        </div>
+        <section class="pane-tab active" id="train" data-tab="train">
+            <hr>
+            <div class="pane-setting">
+                <h4>Filter By Color</h4>
+                <ul class="filters-list filter-section">
+                    {{#each settings.trainLine}}
+                    <li class="train-line {{lineColor}}">
+                        <input id="toggle-{{lineColor}}" type="checkbox" checked="checked" toggle-line="{{lineColor}}"/>
+                    </li>
+                    {{/each}}
+                </ul>
+            </div>
+            <hr>
+            <div class="pane-setting">
+                <h4>Marker Size</h4>
+                <select name="markerSize" id="markerSize">
+                    <option value="small">Small</option>
+                    <option value="medium">Medium</option>
+                    <option value="large">Large</option>
+                </select>
+            </div>
+            <hr>
+            <div class="pane-setting wrap-inline">
+                <h4>Train ID</h4>
+                <input class="custom-switch" type="checkbox">
+            </div>
+        </section>
+        <section class="pane-tab" id="bus"><h4 class="coming-soon">Coming Soon!</h4></section>
+        <section class="pane-tab" id="misc"><h4 class="coming-soon">Coming Soon!</h4></section>
+    </div>
+    <div class="drawer-pane-child marker-size"></div>
+    <div class="drawer-pane-child train-id-labels"></div>
+</div>
+<div id="drawer-locate" class="drawer-pane">
+    <p>Locate</p>
+</div>
+<div id="drawer-about" class="drawer-pane">
+    <p>About</p>
+</div>

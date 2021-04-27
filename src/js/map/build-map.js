@@ -1,14 +1,5 @@
 import trainInfoTemplate from "../../templates/trainInfo.hbs";
-
-var redMarker = require("svg-inline-loader?classPrefix!../../assets/icons/markers/red_marker.svg");
-var blueMarker = require("svg-inline-loader?classPrefix!../../assets/icons/markers/blue_marker.svg");
-var brownMarker = require("svg-inline-loader?classPrefix!../../assets/icons/markers/brown_marker.svg");
-var greenMarker = require("svg-inline-loader?classPrefix!../../assets/icons/markers/green_marker.svg");
-var orangeMarker = require("svg-inline-loader?classPrefix!../../assets/icons/markers/orange_marker.svg");
-var purpleMarker = require("svg-inline-loader?classPrefix!../../assets/icons/markers/purple_marker.svg");
-var pinkMarker = require("svg-inline-loader?classPrefix!../../assets/icons/markers/pink_marker.svg");
-var yellowMarker = require("svg-inline-loader?classPrefix!../../assets/icons/markers/yellow_marker.svg");
-var greyMarker = require("svg-inline-loader?classPrefix!../../assets/icons/markers/grey_marker.svg");
+import { initTrainFilters } from '../ui/components/filter-trains';
 
 const trainLinesKmz = "http://patpiwo.dev/projects/busy-city/map-data/cta_el_tracks.kmz";
 
@@ -41,6 +32,7 @@ export function initMap() {
       infoWindowOpen = undefined;
     }
   });
+  initTrainFilters();
 }
 
 /**
@@ -62,7 +54,7 @@ export let addMarker = (markerInfo) => {
         map: map
       });
 
-      trainMarkers[markerInfo.trainID] = marker;
+      trainMarkers[markerInfo.lineColor+'_'+markerInfo.trainID] = marker;
 
       // Add listener for train marker popup on click
       marker.addListener("click", () => {
@@ -136,7 +128,7 @@ const buildMarker = (markerInfo) => {
  */
 const getTrain = (markerInfo) => {
   const trainID = markerInfo.trainID;
-  if (trainMarkers[trainID]) return true;
+  if (trainMarkers[markerInfo.lineColor+'_'+markerInfo.trainID]) return true;
   else return false;
 };
 
@@ -148,7 +140,7 @@ let updateMarker = (markerInfo) => {
   const trainID = markerInfo.trainID,
     markerNewPosition = new google.maps.LatLng(markerInfo.lat, markerInfo.lon);
 
-  trainMarkers[trainID].setPosition(markerNewPosition);
+  trainMarkers[markerInfo.lineColor+'_'+markerInfo.trainID].setPosition(markerNewPosition);
 };
 
 /**

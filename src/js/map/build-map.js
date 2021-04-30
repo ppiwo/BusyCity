@@ -49,7 +49,7 @@ export let addMarker = (markerInfo) => {
     if (!markerExists) {
       const marker = new google.maps.Marker({
         position: { lat: markerInfo.lat, lng: markerInfo.lon },
-        icon: buildMarker(markerInfo),
+        icon: buildMarker(markerInfo.lineColor),
         size: new google.maps.Size(18, 15),
         map: map
       });
@@ -75,52 +75,56 @@ export let addMarker = (markerInfo) => {
 /**
  *  Build a custom marker for each train
  */
-const buildMarker = (markerInfo) => {
-  if (markerInfo) {
-    let lineColor = markerInfo.lineColor;
-
-    switch (lineColor) {
-      case "red":
-        lineColor = "#C60C30";
-        break;
-      case "blue":
-        lineColor = "#00a1de";
-        break;
-      case "brn":
-        lineColor = "#62361b";
-        break;
-      case "g":
-        lineColor = "#009b3a";
-        break;
-      case "org":
-        lineColor = "#f9461c";
-        break;
-      case "p":
-        lineColor = "#522398;";
-        break;
-      case "pink":
-        lineColor = "#e27ea6";
-        break;
-      case "yellow":
-        lineColor = "#f9e300";
-        break;
-      case "grey":
-        lineColor = "#565a5c";
-        break;
-    }
-
+export const buildMarker = (lineColorString, markerSize) => {
+  if (lineColor) {
     const marker = {
       path: google.maps.SymbolPath.CIRCLE,
       //rotation: 180,
-      scale: 9,
+      scale: markerSize || 8,
       strokeColor: "white",
       strokeWeight: 1,
-      fillColor: lineColor,
+      fillColor: lineColor(lineColorString),
       fillOpacity: 1.0
     };
     return marker;
   }
 };
+
+const lineColor = (lineColorString) => {
+  let lineColorValue;
+  if (lineColorString) {
+    switch (lineColorString) {
+      case "red":
+        lineColorValue = "#C60C30";
+        break;
+      case "blue":
+        lineColorValue = "#00a1de";
+        break;
+      case "brn":
+        lineColorValue = "#62361b";
+        break;
+      case "g":
+        lineColorValue = "#009b3a";
+        break;
+      case "org":
+        lineColorValue = "#f9461c";
+        break;
+      case "p":
+        lineColorValue = "#522398;";
+        break;
+      case "pink":
+        lineColorValue = "#e27ea6";
+        break;
+      case "yellow":
+        lineColorValue = "#f9e300";
+        break;
+      case "grey":
+        lineColorValue = "#565a5c";
+        break;
+    }
+    return lineColorValue;
+  }
+}
 
 /**
  * Check if there is an existing marker for this train already on the map

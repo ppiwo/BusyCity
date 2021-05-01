@@ -1,10 +1,12 @@
 import navBar from "../../../templates/navbar.hbs";
 import { icons } from "../ui-content";
+import { initLocate } from './locate';
 
 export const initNavBar = () => {
   templateNavbar();
   setNavBarHeight();
-  navBarEvents();
+  navBarDrawerEvents();
+  initLocate();
 };
 
 const templateNavbar = () => (document.getElementById("navbar").innerHTML = navBar(icons));
@@ -16,7 +18,7 @@ const setNavBarHeight = () => {
   document.documentElement.style.setProperty("--bottom-bar-height", `${navBarHeight}px`);
 };
 
-const navBarEvents = () => {
+const navBarDrawerEvents = () => {
   const navBarIcons = document.querySelectorAll("[data-open]");
 
   navBarIcons.forEach((icon) => {

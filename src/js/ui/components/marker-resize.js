@@ -4,13 +4,13 @@ import { trainMarkers, buildMarker } from "../../map/build-map";
  * Initialize train marker resize feature
  */
 export const initMarkerResize = () => {
-  inputHandler();
+  setEventListener();
 };
 
 /**
  * Event handler
  */
-const inputHandler = () => {
+const setEventListener = () => {
   const markerSizeInput = document.getElementById("markerSize");
   markerSizeInput.addEventListener("change", (e) => changeMarkerSize(parseInt(e.target.value)));
 };

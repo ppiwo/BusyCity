@@ -1,13 +1,16 @@
 select {
-    background-color: #000000;
-    color: #FFFFFF;
-    appearance: none;
-    background-image: url('/src/assets/icons/arrow-down.svg');
-    background-repeat: no-repeat;
-    background-position-x: calc(100% - 12px);
-    background-position-y: center;
-    padding: 0 12px;
-    border-radius: 5px;
-    border-color: #3DD598;
-    font-size: 1rem;
+  background-color: #000000;
+  color: #ffffff;
+  appearance: none;
+  background-image: url("/src/assets/icons/arrow-down.svg");
+  background-repeat: no-repeat;
+  background-position-x: calc(100% - 12px);
+  background-position-y: center;
+  padding: 0 12px;
+  border-radius: 5px;
+  border-color: #3dd598;
+  font-size: 1rem;
+  &:focus {
+    outline: none;
+  }
 }

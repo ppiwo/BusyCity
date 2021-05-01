@@ -1,21 +1,29 @@
 import { trainMarkers, buildMarker } from "../../map/build-map";
 
+/**
+ * Initialize train marker resize feature
+ */
 export const initMarkerResize = () => {
-    inputHandler();
-}
+  inputHandler();
+};
 
+/**
+ * Event handler
+ */
 const inputHandler = () => {
-    const markerSizeInput = document.getElementById('markerSize');
+  const markerSizeInput = document.getElementById("markerSize");
+  markerSizeInput.addEventListener("change", (e) => changeMarkerSize(parseInt(e.target.value)));
+};
 
-    markerSizeInput.addEventListener('change', (e) => changeMarkerSize(e.target.value));
-}
-
+/**
+ * Changes train marker sizes to the user's input
+ * @param {Integer} newMarkerSize
+ */
 const changeMarkerSize = (newMarkerSize) => {
-//5 8 11
-    for (const marker in trainMarkers) {
-        const markerObj = trainMarkers[marker];
-        const lineColor = marker.split('_')[0];
-        markerObj.setIcon(buildMarker(lineColor))
-      //buildMarker(markerSizeInput);
-    }
-}
+  for (const marker in trainMarkers) {
+    const markerObj = trainMarkers[marker];
+    let markerIcon = markerObj.getIcon();
+    markerIcon.scale = newMarkerSize;
+    markerObj.setIcon(test);
+  }
+};

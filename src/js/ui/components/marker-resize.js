@@ -24,6 +24,6 @@ const changeMarkerSize = (newMarkerSize) => {
     const markerObj = trainMarkers[marker];
     let markerIcon = markerObj.getIcon();
     markerIcon.scale = newMarkerSize;
-    markerObj.setIcon(test);
+    markerObj.setIcon(markerIcon);
   }
 };

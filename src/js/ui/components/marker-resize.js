@@ -17,7 +17,7 @@ const setEventListener = () => {
 
 /**
  * Changes train marker sizes to the user's input
- * @param {Integer} newMarkerSize
+ * @param {Number} newMarkerSize
  */
 const changeMarkerSize = (newMarkerSize) => {
   for (const marker in trainMarkers) {

@@ -1,5 +1,6 @@
 import trainInfoTemplate from "../../templates/trainInfo.hbs";
 import { initTrainFilters } from '../ui/components/filter-trains';
+import { plotTrains } from "./plot-trains";
 
 const trainLinesKmz = "http://patpiwo.dev/projects/busy-city/map-data/cta_el_tracks.kmz";
 
@@ -33,6 +34,7 @@ export function initMap() {
     }
   });
   initTrainFilters();
+  plotTrains();
 }
 
 /**
@@ -203,3 +205,13 @@ const updateInfoWindow = (markerInfo) => {
 const currentInfoWindow = (markerInfo) => {
   if (infoWindowOpen.trainID === markerInfo.trainID) return true;
 };
+
+/**
+ * Pans map to the specified lat/long value
+ * @param {Number} latitude 
+ * @param {Number} longitude 
+ */
+export const panMap = (position) => {
+  map.panTo(position);
+  map.setZoom(16);
+}

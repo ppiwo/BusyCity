@@ -17,7 +17,10 @@ export function initMap() {
     mapId: "4520b10c36453300",
     center: { lat: 41.881832, lng: -87.623177 },
     zoom: 15,
-    disableDefaultUI: false
+    disableDefaultUI: false,
+    fullscreenControl: false,
+    streetViewControl: false,
+    mapTypeControl: false,
   });
 
   new google.maps.KmlLayer({
@@ -112,12 +115,12 @@ const lineColor = (lineColorString) => {
         lineColorValue = "#f9461c";
         break;
       case "p":
-        lineColorValue = "#522398;";
+        lineColorValue = "#522398";
         break;
       case "pink":
         lineColorValue = "#e27ea6";
         break;
-      case "yellow":
+      case "y":
         lineColorValue = "#f9e300";
         break;
       case "grey":

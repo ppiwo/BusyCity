@@ -19,7 +19,8 @@ const setEventListener = () => {
  * Ask user for their location
  */
 const locateUser = () => {
-  navigator.geolocation.getCurrentPosition(checkBoundries, locationError);
+  const options = { enableHighAccuracy: true };
+  navigator.geolocation.getCurrentPosition(checkBoundries, locationError, options);
 };
 
 /**

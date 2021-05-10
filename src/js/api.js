@@ -1,6 +1,14 @@
 const { default: axios } = require("axios");
 const API_KEY = process.env.CTA_API_KEY;
-const baseTrainUrl = 'http://lapi.transitchicago.com/api/1.0/ttpositions.aspx';
+const apiEndpoints = 
+  {
+    cta: 
+    { 
+      train: 'http://lapi.transitchicago.com/api/1.0/ttpositions.aspx', 
+      trainStation: 'http://lapi.transitchicago.com/api/1.0/ttarrivals.aspx'
+    }
+  }
+
 
 /**
  * Get CTA train data from REST API
@@ -8,7 +16,7 @@ const baseTrainUrl = 'http://lapi.transitchicago.com/api/1.0/ttpositions.aspx';
  */
 export async function getTrains() {
   try {
-    const trainData = await axios.get(baseTrainUrl, {
+    const trainData = await axios.get(apiEndpoints.cta.train, {
       params: {
         key: API_KEY,
         rt: 'red,blue,brn,g,org,p,pink,y',
@@ -17,6 +25,6 @@ export async function getTrains() {
     });
     return trainData;
   } catch (error) {
-    return error; // catches both errors
+    return error;
   }
 }

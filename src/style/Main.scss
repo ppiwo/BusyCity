@@ -6,6 +6,13 @@
 body { width: 100vw; height: calc(100vh - var(--bottom-bar-height)); margin: 0; }
 #map { height: 100%; }
 
+@media screen and (min-width: 925px) {
+    #map {
+        width: 100%;
+        position: absolute;
+    }
+}
+
 /**************************************************
 /**                ROOT VARIABLES                **
 /*************************************************/

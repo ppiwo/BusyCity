@@ -23,6 +23,7 @@ const navBarDrawerEvents = () => {
 
   navBarIcons.forEach((icon) => {
     icon.addEventListener("click", () => {
+      console.log('ckick')
       const drawerToBeOpened = icon.getAttribute("data-open"),
         allDrawers = document.querySelectorAll(".drawer-pane"),
         drawerAlreadyOpen = document.querySelector(".drawer-pane.active"),

@@ -30,22 +30,41 @@
     display: none;
   }
 
+  .nav-label {
+    display: none;
+  }
+
   @media screen and (min-width: 992px) {
     width: 30vw;
     top: 0;
     bottom: unset;
     height: 100vh;
     position: relative;
-    background-color: #292F36;
+    background-color: #292f36;
     .close-tab {
       display: block;
       position: absolute;
       width: 35px;
       height: 65px;
-      background-color: #22343C;
+      background-color: #22343c;
       left: calc(30vw);
       top: 30px;
       border-radius: 0 12px 12px 0;
+    }
+    .nav-item {
+      text-align: center;
+      .nav-icon {
+        margin: 0 auto 15px auto;
+        &.main {
+          background-color: transparent;
+        }
+        &.dt-active {
+          background-color: #3dd598;
+        }
+      }
+      .nav-label {
+        display: block;
+      }
     }
   }
 }

@@ -1,4 +1,4 @@
-.train-line > input {
+.checkbox-wrapper > input {
     height: 25px;
     width: 25px;
     -webkit-appearance: none;
@@ -16,13 +16,13 @@
     cursor: pointer;
   }
 
-.train-line > input:checked {
+.checkbox-wrapper > input:checked {
     //border: 1px solid #41B883;
     background-color: #41B883;
     background-image: url(/src/assets/icons/checkbox-tick.svg);
 }
 
-.train-line > input:checked::after {
+.checkbox-wrapper > input:checked::after {
     content: '';
     display: block;
     text-align: center;
@@ -32,7 +32,7 @@
     top: 0.2rem;
 }
 
-.train-line > input:active {
+.checkbox-wrapper > input:active {
     border: 2px solid #34495E;
 }
 

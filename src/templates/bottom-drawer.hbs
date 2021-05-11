@@ -1,4 +1,4 @@
-<div id="drawer-settings" class="drawer-pane">
+<div id="drawer-settings" class="drawer-pane dt-active">
     <div class="pane-header"><h2>Settings</h2></div>
     <div class="pane-content">
         <div class="pane-tabs">
@@ -12,8 +12,9 @@
                 <h4>Filter By Color</h4>
                 <ul class="filters-list filter-section">
                     {{#each settings.trainLine}}
-                    <li class="train-line {{lineColor}}">
-                        <input id="toggle-{{lineColor}}" type="checkbox" checked="checked" toggle-line="{{lineColor}}"/>
+                    <li class="train-line {{lineColor}} checkbox-wrapper">
+                        <label for="toggle-{{lineColor}}">{{lineColor}}</label>
+                        <input class="custom-checkbox dt-custom-switch" id="toggle-{{lineColor}}" type="checkbox" checked="checked" toggle-line="{{lineColor}}"/>
                     </li>
                     {{/each}}
                 </ul>
@@ -40,8 +41,8 @@
     <div class="drawer-pane-child train-id-labels"></div>
 </div>
 <div id="drawer-locate" class="drawer-pane">
-    <p>Locate</p>
+    <div class="pane-header"><h2>Locate</h2></div>
 </div>
 <div id="drawer-about" class="drawer-pane">
-    <p>About</p>
+    <div class="pane-header"><h2>About</h2></div>
 </div>

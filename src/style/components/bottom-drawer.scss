@@ -9,24 +9,29 @@
     position: absolute;
     top: 0;
     width: 100vw;
-    background-color: #d8d8d8;
     transition: transform 0.46s ease-in-out;
     height: 400px;
     &.active {
       transform: translateY(-100%);
     }
-    .coming-soon { padding-top: 15px; }
+    .coming-soon {
+      padding-top: 15px;
+    }
   }
 
-  @media screen and (min-width: 992px){
-    top: 0;
+  @media screen and (min-width: 992px) {
+    top: 135px;
     bottom: unset;
     width: 30vw;
+    z-index: 2;
     .drawer-pane {
       width: 30vw;
+      &:not(.dt-active) {
+        display: none;
+      }
+      .pane-header {
+        display: none;
+      }
     }
   }
 }
-
-
-

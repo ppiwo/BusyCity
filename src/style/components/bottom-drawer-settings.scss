@@ -24,13 +24,15 @@
         }
       }
     }
-    .pane-tab { 
+    .pane-tab {
       display: none;
       &.active {
         display: block;
       }
-      .pane-setting { margin: 15px 0; }
-     }
+      .pane-setting {
+        margin: 15px 0;
+      }
+    }
     #train {
       hr {
         border-color: #707070;
@@ -39,64 +41,66 @@
       h4 {
         margin-bottom: 4px;
       }
-      .filters-list {
-        padding: 0;
-        list-style: none;
-        li {
-          display: inline-block;
-        }
-        input {
-          height: 30px;
-          width: 30px;
-          -webkit-appearance: none;
-        }
-        .train-line {
-          &.red > input {
-            border: 1px solid $cta-red;
-            &:checked {
-              background-color: $cta-red;
-            }
+      @media screen and (max-width: 992px) {
+        .filters-list {
+          padding: 0;
+          list-style: none;
+          li {
+            display: inline-block;
           }
-          &.blue > input {
-            border: 1px solid $cta-blue;
-            &:checked {
-              background-color: $cta-blue;
-            }
+          input {
+            height: 30px;
+            width: 30px;
+            -webkit-appearance: none;
           }
-          &.brn > input {
-            border: 1px solid $cta-brown;
-            &:checked {
-              background-color: $cta-brown;
+          .train-line {
+            &.red > input {
+              border: 1px solid $cta-red;
+              &:checked {
+                background-color: $cta-red;
+              }
             }
-          }
-          &.g > input {
-            border: 1px solid $cta-green;
-            &:checked {
-              background-color: $cta-green;
+            &.blue > input {
+              border: 1px solid $cta-blue;
+              &:checked {
+                background-color: $cta-blue;
+              }
             }
-          }
-          &.org > input {
-            border: 1px solid $cta-orange;
-            &:checked {
-              background-color: $cta-orange;
+            &.brn > input {
+              border: 1px solid $cta-brown;
+              &:checked {
+                background-color: $cta-brown;
+              }
             }
-          }
-          &.p > input {
-            border: 1px solid $cta-purple;
-            &:checked {
-              background-color: $cta-purple;
+            &.g > input {
+              border: 1px solid $cta-green;
+              &:checked {
+                background-color: $cta-green;
+              }
             }
-          }
-          &.pink > input {
-            border: 1px solid $cta-pink;
-            &:checked {
-              background-color: $cta-pink;
+            &.org > input {
+              border: 1px solid $cta-orange;
+              &:checked {
+                background-color: $cta-orange;
+              }
             }
-          }
-          &.y > input {
-            border: 1px solid $cta-yellow;
-            &:checked {
-              background-color: $cta-yellow;
+            &.p > input {
+              border: 1px solid $cta-purple;
+              &:checked {
+                background-color: $cta-purple;
+              }
+            }
+            &.pink > input {
+              border: 1px solid $cta-pink;
+              &:checked {
+                background-color: $cta-pink;
+              }
+            }
+            &.y > input {
+              border: 1px solid $cta-yellow;
+              &:checked {
+                background-color: $cta-yellow;
+              }
             }
           }
         }
@@ -113,6 +117,43 @@
           padding-right: 32px;
         }
       }
+    }
+  }
+
+  @media screen and (min-width: 992px) {
+    .filters-list {
+      list-style: none;
+    }
+    .train-line {
+      width: 100%;
+    }
+    .checkbox-wrapper > input:checked {
+      background-color: #ffffff;
+    }
+
+    .train-line.red {
+      background-color: $cta-red;
+    }
+    .train-line.blue {
+      background-color: $cta-blue;
+    }
+    .train-line.brn {
+      background-color: $cta-brown;
+    }
+    .train-line.g {
+      background-color: $cta-green;
+    }
+    .train-line.org {
+      background-color: $cta-orange;
+    }
+    .train-line.p {
+      background-color: $cta-purple;
+    }
+    .train-line.pink {
+      background-color: $cta-pink;
+    }
+    .train-line.y {
+      background-color: $cta-yellow;
     }
   }
 }

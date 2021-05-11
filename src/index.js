@@ -11,7 +11,7 @@ import { plotTrains } from './js/map/plot-trains';
 
 window.initMap = initMap;
 initUI();
-plotTrains();
+//plotTrains();
 setInterval(function () {
-  plotTrains();
+  //plotTrains();
 }, 10000);

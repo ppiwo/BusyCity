@@ -13,14 +13,14 @@
                 <ul class="filters-list filter-section">
                     {{#each settings.trainLine}}
                     <li class="train-line {{lineColor}} checkbox-wrapper">
-                        <label for="toggle-{{lineColor}}">{{lineColor}}</label>
+                        <label for="toggle-{{lineColor}}">{{[helpers/prettify-train-lines] lineColor}} Line</label>
                         <input class="custom-checkbox dt-custom-switch" id="toggle-{{lineColor}}" type="checkbox" checked="checked" toggle-line="{{lineColor}}"/>
                     </li>
                     {{/each}}
                 </ul>
             </div>
             <hr>
-            <div class="pane-setting">
+            <div class="pane-setting setting-inline">
                 <h4>Marker Size</h4>
                 <select name="markerSize" id="markerSize">
                     <option value="5">Small</option>

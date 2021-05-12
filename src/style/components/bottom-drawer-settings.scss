@@ -121,11 +121,33 @@
   }
 
   @media screen and (min-width: 992px) {
+    .pane-content {
+      padding: 0 50px;
+      #train #markerSize {
+        height: 42px;
+        width: 175px;
+      }
+    }
+    .pane-setting.setting-inline {
+      * {
+        display: inline-block;
+      }
+      h4 {
+        padding-right: 160px;
+      }
+    }
     .filters-list {
       list-style: none;
+      padding: 0;
     }
     .train-line {
-      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      padding: 5px 35px;
+      text-transform: capitalize;
+      label {
+        line-height: 2;
+      }
     }
     .checkbox-wrapper > input:checked {
       background-color: #ffffff;

@@ -2,6 +2,7 @@ import "./style/Main.scss";
 import initUI from "./js/ui/ui";
 import { initMap } from "./js/map/build-map";
 import { plotTrains } from "./js/map/plot-trains";
+import toast from './js/ui/components/toast';
 
 /**
  * ENTRY POINT
@@ -12,6 +13,7 @@ import { plotTrains } from "./js/map/plot-trains";
 // Assign to window namespace - this is called by callback param in embeded Google map
 window.initMap = initMap;
 initUI();
+toast();
 //plotTrains();
 setInterval(function () {
   //plotTrains();

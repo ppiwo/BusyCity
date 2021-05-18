@@ -1,6 +1,7 @@
 import settingsIcon from '../../assets/icons/cog-solid.svg';
 import locateIcon from '../../assets/icons/locate.svg';
 import aboutIcon from '../../assets/icons/info-solid.svg';
+
 /**
  * Content for Handlebars templates
  */
@@ -8,7 +9,7 @@ import aboutIcon from '../../assets/icons/info-solid.svg';
 export const icons = {
   settings: settingsIcon,
   locate: locateIcon,
-  about: aboutIcon,
+  about: aboutIcon
 };
 
 export const bottomDrawerContent = {
@@ -21,9 +22,9 @@ export const bottomDrawerContent = {
       { lineColor: 'org' },
       { lineColor: 'p' },
       { lineColor: 'pink' },
-      { lineColor: 'y' },
-    ],
+      { lineColor: 'y' }
+    ]
   },
   locate: {},
-  about: {},
+  about: {}
 };

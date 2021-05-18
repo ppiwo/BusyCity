@@ -1,47 +1,82 @@
-import navBar from "../../../templates/navbar.hbs";
-import { icons } from "../ui-content";
+import navBar from '../../../templates/navbar.hbs';
+import { icons } from '../ui-content';
 import { initLocate } from './locate';
 
 export const initNavBar = () => {
   templateNavbar();
+  toggleDtNav();
   setNavBarHeight();
   navBarDrawerEvents();
   initLocate();
 };
 
-const templateNavbar = () => (document.getElementById("navbar").innerHTML = navBar(icons));
+/**
+ * Call handlebars to template the nav bar
+ */
+const templateNavbar = () => (document.getElementById('navbar').innerHTML = navBar(icons));
 
+/**
+ * Set NavBar root variable
+ */
 const setNavBarHeight = () => {
-  const navBar = document.getElementById("navbar"),
+  const navBar = document.getElementById('navbar'),
     navBarHeight = navBar.offsetHeight;
 
-  document.documentElement.style.setProperty("--bottom-bar-height", `${navBarHeight}px`);
+  document.documentElement.style.setProperty('--bottom-bar-height', `${navBarHeight}px`);
 };
 
+/**
+ * Handles all events for the navBarDrawers
+ */
 const navBarDrawerEvents = () => {
-  const navBarIcons = document.querySelectorAll("[data-open]");
+  const navBarItem = document.querySelectorAll('[data-open]'),
+    navBarIcons = document.querySelectorAll('.nav-icon');
 
   navBarIcons.forEach((icon) => {
-    icon.addEventListener("click", () => {
-      console.log('ckick')
-      const drawerToBeOpened = icon.getAttribute("data-open"),
-        allDrawers = document.querySelectorAll(".drawer-pane"),
-        drawerAlreadyOpen = document.querySelector(".drawer-pane.active"),
-        drawerToOpen = document.getElementById(drawerToBeOpened);
-
-      if (drawerToOpen != drawerAlreadyOpen) {
-        allDrawers.forEach((drawer) => drawer.classList.remove("active"));
-        if (drawerAlreadyOpen) {
-          // Set delay to allow first animation to complete
-          setTimeout(() => {
-            drawerToOpen.classList.add("active");
-          }, 500);
-        } else {
-          drawerToOpen.classList.add("active");
-        }
-      } else {
-        drawerAlreadyOpen.classList.remove("active");
-      }
+    icon.parentElement.addEventListener('click', () => {
+      navBarIcons.forEach((icon) => icon.classList.remove('active', 'dt-active'));
+      icon.classList.add('active', 'dt-active');
+      const drawerOpenId = icon.parentElement.getAttribute('data-open'),
+        drawerToBeOpened = document.querySelector(`#${drawerOpenId}`),
+        allDrawers = document.querySelectorAll('.drawer-pane'),
+        drawerAlreadyOpen = document.querySelector('.drawer-pane.active');
+      handleDrawers(allDrawers, drawerToBeOpened, drawerAlreadyOpen);
     });
+  });
+
+  /**
+   * Handles the open/close logic of the nav drawers
+   * @param {string} drawerToOpen DOM ELEMENT
+   * @param {string} drawerAlreadyOpen DOM ELEMENT
+   */
+  const handleDrawers = (allDrawers, drawerToOpen, drawerAlreadyOpen) => {
+    console.log(drawerAlreadyOpen);
+    if (drawerToOpen != drawerAlreadyOpen) {
+      allDrawers.forEach((drawer) => drawer.classList.remove('active', 'dt-active'));
+      if (drawerAlreadyOpen) {
+        // Set delay to allow first animation to complete
+        setTimeout(() => {
+          drawerToOpen.classList.add('active', 'dt-active');
+        }, 500);
+      } else {
+        drawerToOpen.classList.add('active', 'dt-active');
+      }
+    } else {
+      if (drawerToOpen) drawerAlreadyOpen.classList.remove('active', 'dt-active');
+    }
+  };
+};
+
+/**
+ * Desktop nav functionality is a bit different - this function handles DT navigation
+ */
+const toggleDtNav = () => {
+  const navBar = document.getElementById('navbar'),
+    navBarToggler = navBar.querySelector('[data-toggle-dt-nav]'),
+    bottomDrawer = document.getElementById('bottom-drawer');
+
+  navBarToggler.addEventListener('click', (e) => {
+    navBar.classList.toggle('dt-active');
+    bottomDrawer.classList.toggle('dt-active');
   });
 };

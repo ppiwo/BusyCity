@@ -1,5 +1,5 @@
-import { getTrains } from "../api";
-import { addMarker } from "./build-map";
+import { getTrains } from '../api';
+import { addMarker } from './build-map';
 
 /**
  * Calls API function to retrieve CTA data.
@@ -11,7 +11,7 @@ export async function trainDataParse() {
   if (trainData && trainData.status === 200) {
     return trainData;
   } else {
-    throw new Error("CTA API ERROR: Please check back again later.");
+    throw new Error('CTA API ERROR: Please check back again later.');
   }
 }
 
@@ -23,11 +23,11 @@ export const plotTrains = async () => {
     let trainData = await trainDataParse();
     trainData = trainData.data.ctatt.route;
     trainData.forEach((route) => {
-      let lineColor = route["@name"];
+      let lineColor = route['@name'];
       if (route.train !== undefined && route.train.length > 1) {
         route.train.forEach((train) => {
           const markerInfo = {
-            type: "train",
+            type: 'train',
             trainID: parseInt(train.rn),
             lat: parseFloat(train.lat),
             lon: parseFloat(train.lon),
@@ -35,7 +35,7 @@ export const plotTrains = async () => {
             isDly: train.isDly == 1 ? true : false,
             lineColor: lineColor,
             nextStop: train.nextStaNm,
-            destination: train.destNm,
+            destination: train.destNm
           };
           addMarker(markerInfo);
         });
@@ -47,7 +47,7 @@ export const plotTrains = async () => {
           if (train.isDly == true) isDly = true;
           else isDly = false;
           const markerInfo = {
-            type: "train",
+            type: 'train',
             trainID: parseInt(train.rn),
             lat: parseFloat(train.lat),
             lon: parseFloat(train.lon),
@@ -55,7 +55,7 @@ export const plotTrains = async () => {
             isDly: train.isDly == 1 ? true : false,
             lineColor: lineColor,
             nextStop: train.nextStaNm,
-            destination: train.destNm,
+            destination: train.destNm
           };
           addMarker(markerInfo);
         }

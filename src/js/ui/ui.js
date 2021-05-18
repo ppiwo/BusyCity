@@ -1,4 +1,3 @@
-
 import { initNavBar } from './components/navbar';
 import { initDrawer } from './components/bottom-drawer';
 

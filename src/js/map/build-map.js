@@ -1,8 +1,8 @@
-import trainInfoTemplate from "../../templates/trainInfo.hbs";
+import trainInfoTemplate from '../../templates/trainInfo.hbs';
 import { initTrainFilters } from '../ui/components/filter-trains';
-import { plotTrains } from "./plot-trains";
+import { plotTrains } from './plot-trains';
 
-const trainLinesKmz = "http://patpiwo.dev/projects/busy-city/map-data/cta_el_tracks.kmz";
+const trainLinesKmz = 'http://patpiwo.dev/projects/busy-city/map-data/cta_el_tracks.kmz';
 
 export let map;
 export let trainMarkers = {};
@@ -13,14 +13,14 @@ let infoWindowOpen = undefined;
  * (called by callback in google maps script tag in index.html)
  */
 export function initMap() {
-  map = new google.maps.Map(document.getElementById("map"), {
-    mapId: "4520b10c36453300",
+  map = new google.maps.Map(document.getElementById('map'), {
+    mapId: '4520b10c36453300',
     center: { lat: 41.881832, lng: -87.623177 },
     zoom: 15,
     disableDefaultUI: false,
     fullscreenControl: false,
     streetViewControl: false,
-    mapTypeControl: false,
+    mapTypeControl: false
   });
 
   new google.maps.KmlLayer({
@@ -30,7 +30,7 @@ export function initMap() {
   });
 
   // When any part of the map except the marker or infowindow is clicked
-  map.addListener("click", () => {
+  map.addListener('click', () => {
     if (infoWindowOpen) {
       infoWindowOpen.infoWindow.close();
       infoWindowOpen = undefined;
@@ -47,7 +47,7 @@ export function initMap() {
  * @param {Object} markerInfo Contains info for each marker and it's infoWindow
  */
 export let addMarker = (markerInfo) => {
-  if (markerInfo.type === "train") {
+  if (markerInfo.type === 'train') {
     let markerExists = getTrain(markerInfo);
 
     // If marker is not found, add it
@@ -59,10 +59,10 @@ export let addMarker = (markerInfo) => {
         map: map
       });
 
-      trainMarkers[markerInfo.lineColor+'_'+markerInfo.trainID] = marker;
+      trainMarkers[markerInfo.lineColor + '_' + markerInfo.trainID] = marker;
 
       // Add listener for train marker popup on click
-      marker.addListener("click", () => {
+      marker.addListener('click', () => {
         if (infoWindowOpen) infoWindowOpen.infoWindow.close();
         buildInfoWindow(map, marker, markerInfo);
       });
@@ -86,7 +86,7 @@ export const buildMarker = (lineColorString, markerSize) => {
       path: google.maps.SymbolPath.CIRCLE,
       //rotation: 180,
       scale: markerSize || 8,
-      strokeColor: "white",
+      strokeColor: 'white',
       strokeWeight: 1,
       fillColor: lineColor(lineColorString),
       fillOpacity: 1.0
@@ -99,37 +99,37 @@ const lineColor = (lineColorString) => {
   let lineColorValue;
   if (lineColorString) {
     switch (lineColorString) {
-      case "red":
-        lineColorValue = "#C60C30";
+      case 'red':
+        lineColorValue = '#C60C30';
         break;
-      case "blue":
-        lineColorValue = "#00a1de";
+      case 'blue':
+        lineColorValue = '#00a1de';
         break;
-      case "brn":
-        lineColorValue = "#62361b";
+      case 'brn':
+        lineColorValue = '#62361b';
         break;
-      case "g":
-        lineColorValue = "#009b3a";
+      case 'g':
+        lineColorValue = '#009b3a';
         break;
-      case "org":
-        lineColorValue = "#f9461c";
+      case 'org':
+        lineColorValue = '#f9461c';
         break;
-      case "p":
-        lineColorValue = "#522398";
+      case 'p':
+        lineColorValue = '#522398';
         break;
-      case "pink":
-        lineColorValue = "#e27ea6";
+      case 'pink':
+        lineColorValue = '#e27ea6';
         break;
-      case "y":
-        lineColorValue = "#f9e300";
+      case 'y':
+        lineColorValue = '#f9e300';
         break;
-      case "grey":
-        lineColorValue = "#565a5c";
+      case 'grey':
+        lineColorValue = '#565a5c';
         break;
     }
     return lineColorValue;
   }
-}
+};
 
 /**
  * Check if there is an existing marker for this train already on the map
@@ -137,7 +137,7 @@ const lineColor = (lineColorString) => {
  */
 const getTrain = (markerInfo) => {
   const trainID = markerInfo.trainID;
-  if (trainMarkers[markerInfo.lineColor+'_'+markerInfo.trainID]) return true;
+  if (trainMarkers[markerInfo.lineColor + '_' + markerInfo.trainID]) return true;
   else return false;
 };
 
@@ -149,7 +149,7 @@ let updateMarker = (markerInfo) => {
   const trainID = markerInfo.trainID,
     markerNewPosition = new google.maps.LatLng(markerInfo.lat, markerInfo.lon);
 
-  trainMarkers[markerInfo.lineColor+'_'+markerInfo.trainID].setPosition(markerNewPosition);
+  trainMarkers[markerInfo.lineColor + '_' + markerInfo.trainID].setPosition(markerNewPosition);
 };
 
 /**
@@ -159,9 +159,9 @@ let updateMarker = (markerInfo) => {
  * @returns {Object} HTML content to be displayed in infoWindow
  */
 export let trainInfo = (markerInfo) => {
-  const infoWindowElement = document.createElement("section");
+  const infoWindowElement = document.createElement('section');
 
-  infoWindowElement.id = "custom-info-window";
+  infoWindowElement.id = 'custom-info-window';
   infoWindowElement.innerHTML = trainInfoTemplate(markerInfo);
   infoWindowElement.classList.add(`info-window__${markerInfo.lineColor}`);
 
@@ -193,7 +193,7 @@ const buildInfoWindow = (map, marker, markerInfo) => {
  * @param {Object} markerInfo
  */
 const updateInfoWindow = (markerInfo) => {
-  const infoWindowElement = document.querySelector("#custom-info-window"),
+  const infoWindowElement = document.querySelector('#custom-info-window'),
     markerPosition = infoWindowOpen.marker.getPosition();
 
   infoWindowElement.innerHTML = trainInfoTemplate(markerInfo);
@@ -211,10 +211,10 @@ const currentInfoWindow = (markerInfo) => {
 
 /**
  * Pans map to the specified lat/long value
- * @param {Number} latitude 
- * @param {Number} longitude 
+ * @param {Number} latitude
+ * @param {Number} longitude
  */
 export const panMap = (position) => {
   map.panTo(position);
   map.setZoom(16);
-}
+};

@@ -1,4 +1,4 @@
-import { trainMarkers } from "../../map/build-map";
+import { trainMarkers } from '../../map/build-map';
 
 /**
  * Initialize Train Filters
@@ -11,10 +11,10 @@ export const initTrainFilters = () => {
  * Add Event Listeners on the train filters inside settings pane
  */
 const addListeners = () => {
-  const filterToggles = document.querySelectorAll("[toggle-line]");
+  const filterToggles = document.querySelectorAll('[toggle-line]');
   filterToggles.forEach((toggle) => {
-    toggle.addEventListener("click", (e) => {
-      const toggledColor = e.target.getAttribute("toggle-line"),
+    toggle.addEventListener('click', (e) => {
+      const toggledColor = e.target.getAttribute('toggle-line'),
         checkBoxValue = e.target.checked;
       toggleTrainLine(toggledColor, checkBoxValue);
     });
@@ -28,7 +28,7 @@ const addListeners = () => {
  */
 const toggleTrainLine = (lineColor, checkBoxValue) => {
   for (const key in trainMarkers) {
-    if (key.includes(lineColor + "_")) {
+    if (key.includes(lineColor + '_')) {
       const currentMarker = trainMarkers[key];
       currentMarker.setVisible(checkBoxValue);
     }

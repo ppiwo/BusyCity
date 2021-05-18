@@ -5,6 +5,7 @@
   background: #22343c;
   z-index: 2;
   padding: 3px 0;
+  font-size: .8rem;
   ul {
     display: flex;
     justify-content: space-evenly;
@@ -35,19 +36,21 @@
   }
 
   @media screen and (min-width: 992px) {
-    width: 30vw;
+    transform: translateX(-100%);
     top: 0;
+    width: 30vw;
     bottom: unset;
     height: 100vh;
     position: relative;
     background-color: #292f36;
+    &.dt-active { transform: translateX(0); .close-tab { left: 30vw; } }
     .close-tab {
       display: block;
       position: absolute;
       width: 35px;
       height: 65px;
       background-color: #22343c;
-      left: calc(30vw);
+      right: -35px;
       top: 30px;
       border-radius: 0 12px 12px 0;
     }

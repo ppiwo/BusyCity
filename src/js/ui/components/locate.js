@@ -31,10 +31,15 @@ const checkBoundries = (location) => {
   const { latitude, longitude } = location.coords,
     chicagoBoundries = {
       lat: { start: 41.781158, end: 42.073238 },
-      long: { start: -87.56585, end: -87.928565 },
+      long: { start: -87.56585, end: -87.928565 }
     };
 
-  if (latitude >= chicagoBoundries.lat.start && latitude <= chicagoBoundries.lat.end && longitude <= chicagoBoundries.long.start && longitude >= chicagoBoundries.long.end) {
+  if (
+    latitude >= chicagoBoundries.lat.start &&
+    latitude <= chicagoBoundries.lat.end &&
+    longitude <= chicagoBoundries.long.start &&
+    longitude >= chicagoBoundries.long.end
+  ) {
     positionMap({ lat: latitude, lng: longitude });
   }
 };
@@ -48,9 +53,9 @@ const locationError = () => {
 
 /**
  * Position the center of the map to the user's location
- * @param {*} latitude 
- * @param {*} longitude 
+ * @param {*} latitude
+ * @param {*} longitude
  */
 const positionMap = (latitude, longitude) => {
-  panMap(latitude, longitude)
-}
+  panMap(latitude, longitude);
+};

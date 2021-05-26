@@ -12,10 +12,9 @@
                 <h4>Filter By Color</h4>
                 <ul class="filters-list filter-section">
                     {{#each settings.trainLine}}
-                    <li class="train-line {{lineColor}} checkbox-wrapper">
-                        <label for="toggle-{{lineColor}}">{{[helpers/prettify-train-lines] lineColor}} Line</label>
-                        <input class="custom-checkbox dt-custom-switch" id="toggle-{{lineColor}}" type="checkbox" checked="checked" toggle-line="{{lineColor}}"/>
-                    </li>
+                        <label class="train-line {{lineColor}} checkbox-wrapper" for="toggle-{{lineColor}}">{{[helpers/prettify-train-lines] lineColor}} Line
+                            <input class="custom-checkbox dt-custom-switch" id="toggle-{{lineColor}}" type="checkbox" checked="checked" toggle-line="{{lineColor}}"/>  
+                        </label>
                     {{/each}}
                 </ul>
             </div>

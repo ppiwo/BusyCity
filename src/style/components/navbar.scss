@@ -38,12 +38,10 @@
   @media screen and (min-width: 992px) {
     transform: translateX(-100%);
     top: 0;
-    width: 30vw;
-    bottom: unset;
+    width: 370px;
     height: 100vh;
-    position: relative;
     background-color: #292f36;
-    &.dt-active { transform: translateX(0); .close-tab { left: 30vw; } }
+    &.dt-active { transform: translateX(0); }
     .close-tab {
       display: block;
       position: absolute;

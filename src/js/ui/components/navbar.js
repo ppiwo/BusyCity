@@ -50,7 +50,6 @@ const navBarDrawerEvents = () => {
    * @param {string} drawerAlreadyOpen DOM ELEMENT
    */
   const handleDrawers = (allDrawers, drawerToOpen, drawerAlreadyOpen) => {
-    console.log(drawerAlreadyOpen);
     if (drawerToOpen != drawerAlreadyOpen) {
       allDrawers.forEach((drawer) => drawer.classList.remove('active', 'dt-active'));
       if (drawerAlreadyOpen) {

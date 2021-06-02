@@ -45,6 +45,7 @@
     background-color: #292f36;
     &.dt-active { transform: translateX(0); .close-tab { left: 30vw; } }
     .close-tab {
+      cursor: pointer;
       display: block;
       position: absolute;
       width: 35px;
@@ -55,7 +56,7 @@
       border-radius: 0 12px 12px 0;
     }
     .nav-item {
-      text-align: center;
+      text-align: center; cursor: pointer;
       .nav-icon {
         margin: 0 auto 15px auto;
         &.main {

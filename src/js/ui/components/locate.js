@@ -1,4 +1,5 @@
 import { panMap } from '../../map/build-map';
+import { showSpinner, hideSpinner } from './spinner';
 
 /**
  * Initialize location feature
@@ -19,6 +20,8 @@ const setEventListener = () => {
  * Ask user for their location
  */
 const locateUser = () => {
+  // Display spinner
+  showSpinner('Fetching location please wait')
   const options = { enableHighAccuracy: true };
   navigator.geolocation.getCurrentPosition(checkBoundries, locationError, options);
 };
@@ -40,6 +43,7 @@ const checkBoundries = (location) => {
     longitude <= chicagoBoundries.long.start &&
     longitude >= chicagoBoundries.long.end
   ) {
+    hideSpinner();
     positionMap({ lat: latitude, lng: longitude });
   }
 };
@@ -48,6 +52,8 @@ const checkBoundries = (location) => {
  * User's browser doesn't support geolocation or user denied permission
  */
 const locationError = () => {
+  hideSpinner();
+  // Show location error toast
   console.log('location error');
 };
 

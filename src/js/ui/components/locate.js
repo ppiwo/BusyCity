@@ -21,7 +21,7 @@ const setEventListener = () => {
  */
 const locateUser = () => {
   // Display spinner
-  showSpinner('Fetching location please wait')
+  showSpinner('Fetching location please wait');
   const options = { enableHighAccuracy: true };
   navigator.geolocation.getCurrentPosition(checkBoundries, locationError, options);
 };

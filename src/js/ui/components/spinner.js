@@ -1,6 +1,5 @@
 import templateSpinner from '../../../templates/spinner.hbs';
 
-
 /**
  * Template the spinner with an optional message
  */
@@ -14,7 +13,7 @@ export const showSpinner = (spinnerMessage) => {
  * Hide the spinner
  */
 export const hideSpinner = () => {
-    const spinnerElement = document.getElementById('spinner');
-    if (spinnerElement.querySelector('.spinner-text')) spinnerElement.querySelector('.spinner-text').innerHTML = '';
-    spinnerElement.classList.remove('show');
+  const spinnerElement = document.getElementById('spinner');
+  if (spinnerElement.querySelector('.spinner-text')) spinnerElement.querySelector('.spinner-text').innerHTML = '';
+  spinnerElement.classList.remove('show');
 };

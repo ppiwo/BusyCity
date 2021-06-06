@@ -18,7 +18,7 @@ const templateNavbar = () => (document.getElementById('navbar').innerHTML = navB
 /**
  * Set NavBar root variable
  */
-const setNavBarHeight = () => {
+export const setNavBarHeight = () => {
   const navBar = document.getElementById('navbar'),
     navBarHeight = navBar.offsetHeight;
 

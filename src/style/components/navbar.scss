@@ -5,7 +5,7 @@
   background: #22343c;
   z-index: 2;
   padding: 3px 0;
-  font-size: .8rem;
+  font-size: 0.8rem;
   ul {
     display: flex;
     justify-content: space-evenly;
@@ -43,10 +43,14 @@
     height: 100vh;
     position: relative;
     background-color: #292f36;
-    &.dt-active { transform: translateX(0); .close-tab { left: 30vw; } }
+    &.dt-active {
+      transform: translateX(0);
+      .close-tab {
+        left: 30vw;
+      }
+    }
     .close-tab {
       cursor: pointer;
-      display: block;
       position: absolute;
       width: 35px;
       height: 65px;
@@ -54,9 +58,22 @@
       right: -35px;
       top: 30px;
       border-radius: 0 12px 12px 0;
+      display: flex;
+      vertical-align: middle;
+      justify-content: center;
+      flex-direction: column;
+      img {
+        height: 20px;
+        transform: rotate(180deg);
+        transition: transform 0.2s ease-in-out;
+      }
+    }
+    &.dt-active .close-tab img {
+      transform: rotate(0deg);
     }
     .nav-item {
-      text-align: center; cursor: pointer;
+      text-align: center;
+      cursor: pointer;
       .nav-icon {
         margin: 0 auto 15px auto;
         &.main {

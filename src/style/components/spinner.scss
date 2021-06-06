@@ -8,6 +8,7 @@
   background-color: #22343c;
   z-index: 3;
   text-align: center;
+  border-radius: 12px;
   &.show {
     display: block;
     opacity: 100;
@@ -21,12 +22,12 @@
     width: 11em;
     height: 11em;
     border-radius: 50%;
-    background: #ffffff;
-    background: -moz-linear-gradient(left, #ffffff 10%, rgba(255, 255, 255, 0) 42%);
-    background: -webkit-linear-gradient(left, #ffffff 10%, rgba(255, 255, 255, 0) 42%);
-    background: -o-linear-gradient(left, #ffffff 10%, rgba(255, 255, 255, 0) 42%);
-    background: -ms-linear-gradient(left, #ffffff 10%, rgba(255, 255, 255, 0) 42%);
-    background: linear-gradient(to right, #ffffff 10%, rgba(255, 255, 255, 0) 42%);
+    background: #3dd598;
+    background: -moz-linear-gradient(left, #3dd598 10%, rgba(255, 255, 255, 0) 42%);
+    background: -webkit-linear-gradient(left, #3dd598 10%, rgba(255, 255, 255, 0) 42%);
+    background: -o-linear-gradient(left, #3dd598 10%, rgba(255, 255, 255, 0) 42%);
+    background: -ms-linear-gradient(left, #3dd598 10%, rgba(255, 255, 255, 0) 42%);
+    background: linear-gradient(to right, #3dd598 10%, rgba(255, 255, 255, 0) 42%);
     position: relative;
     -webkit-animation: load3 1.4s infinite linear;
     animation: load3 1.4s infinite linear;
@@ -38,7 +39,7 @@
   .loader:before {
     width: 50%;
     height: 50%;
-    background: #ffffff;
+    background: #3dd598;
     border-radius: 100% 0 0 0;
     position: absolute;
     top: 0;
@@ -46,7 +47,7 @@
     content: '';
   }
   .loader:after {
-    background: grey;
+    background: #22343c;
     width: 75%;
     height: 75%;
     border-radius: 50%;

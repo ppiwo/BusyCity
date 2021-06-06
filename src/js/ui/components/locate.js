@@ -46,6 +46,10 @@ const checkBoundries = (location) => {
     hideSpinner();
     positionMap({ lat: latitude, lng: longitude });
   }
+  else {
+    // User not in not within Chicago boundries
+      // Show modal 'This feature only works for users within the city of Chicago'
+  }
 };
 
 /**
@@ -53,7 +57,7 @@ const checkBoundries = (location) => {
  */
 const locationError = () => {
   hideSpinner();
-  // Show location error toast
+  // Show location error modal
   console.log('location error');
 };
 

@@ -1,5 +1,6 @@
 import { panMap } from '../../map/build-map';
 import { showSpinner, hideSpinner } from './spinner';
+import modal from './modal';
 
 /**
  * Initialize location feature
@@ -58,7 +59,7 @@ const checkBoundries = (location) => {
 const locationError = () => {
   hideSpinner();
   // Show location error modal
-  console.log('location error');
+  modal({header: 'Location Error', body: 'We were unable to obtain your location. <br> Please make sure location services are enabled.'});
 };
 
 /**

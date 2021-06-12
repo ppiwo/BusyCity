@@ -18,7 +18,7 @@ const templateNavbar = () => (document.getElementById('navbar').innerHTML = navB
 /**
  * Set NavBar root variable
  */
-const setNavBarHeight = () => {
+export const setNavBarHeight = () => {
   const navBar = document.getElementById('navbar'),
     navBarHeight = navBar.offsetHeight;
 
@@ -50,7 +50,6 @@ const navBarDrawerEvents = () => {
    * @param {string} drawerAlreadyOpen DOM ELEMENT
    */
   const handleDrawers = (allDrawers, drawerToOpen, drawerAlreadyOpen) => {
-    console.log(drawerAlreadyOpen);
     if (drawerToOpen != drawerAlreadyOpen) {
       allDrawers.forEach((drawer) => drawer.classList.remove('active', 'dt-active'));
       if (drawerAlreadyOpen) {

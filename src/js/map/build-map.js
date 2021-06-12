@@ -95,6 +95,11 @@ export const buildMarker = (lineColorString, markerSize) => {
   }
 };
 
+/**
+ * Returns the hex value for the official CTA colors for each line
+ * @param {String} lineColorString 
+ * @returns 
+ */
 const lineColor = (lineColorString) => {
   let lineColorValue;
   if (lineColorString) {

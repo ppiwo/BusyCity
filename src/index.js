@@ -12,7 +12,6 @@ import { plotTrains } from "./js/map/plot-trains";
 // Assign to window namespace - this is called by callback param in embeded Google map
 window.initMap = initMap;
 initUI();
-//plotTrains();
 setInterval(function () {
   //plotTrains();
 }, 10000);

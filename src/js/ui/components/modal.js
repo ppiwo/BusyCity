@@ -12,14 +12,17 @@ const showmodal = (message) => {
  * Add event listener for modal close
  */
 const modalCloseEvent = (modal) => {
-    
+    const modalBackdrop = modal.querySelector('.modal-backdrop');
+    modalBackdrop.addEventListener('click', (e) => {
+        if (e.target.hasAttribute('data-modal-close')) hidemodal(modal);
+    });
 }
 
 /**
  * Clear modal contents and hide the modal
  */
-const hidemodal = () => {
-
+const hidemodal = (modal) => {
+    modal.innerHTML = '';
 }
 
 

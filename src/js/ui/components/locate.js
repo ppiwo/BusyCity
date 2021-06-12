@@ -49,6 +49,8 @@ const checkBoundries = (location) => {
   }
   else {
     // User not in not within Chicago boundries
+    hideSpinner();
+    modal({header: 'Boundary Error', body: 'Location detected as out of Chicago bounds. <br> <br> This feature is currently only avaliable for users located in Chicago.'});
       // Show modal 'This feature only works for users within the city of Chicago'
   }
 };

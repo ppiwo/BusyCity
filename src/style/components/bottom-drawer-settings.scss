@@ -33,89 +33,95 @@
         margin: 15px 0;
       }
     }
-    #train {
-      hr {
-        border-color: #707070;
-        color: #707070;
+    hr {
+      border-color: #707070;
+      color: #707070;
+    }
+    h4 {
+      margin-bottom: 4px;
+    }
+    .filters-list {
+      label {
+        display: none;
       }
+    }
+    @media screen and (max-width: 992px) {
+      .filters-list {
+        padding: 0;
+        list-style: none;
+        label {
+          display: block;
+        }
+        li {
+          display: inline-block;
+        }
+        input {
+          height: 30px;
+          width: 30px;
+          -webkit-appearance: none;
+        }
+        .train-line {
+          &.red > input {
+            border: 1px solid $cta-red;
+            &:checked {
+              background-color: $cta-red;
+            }
+          }
+          &.blue > input {
+            border: 1px solid $cta-blue;
+            &:checked {
+              background-color: $cta-blue;
+            }
+          }
+          &.brn > input {
+            border: 1px solid $cta-brown;
+            &:checked {
+              background-color: $cta-brown;
+            }
+          }
+          &.g > input {
+            border: 1px solid $cta-green;
+            &:checked {
+              background-color: $cta-green;
+            }
+          }
+          &.org > input {
+            border: 1px solid $cta-orange;
+            &:checked {
+              background-color: $cta-orange;
+            }
+          }
+          &.p > input {
+            border: 1px solid $cta-purple;
+            &:checked {
+              background-color: $cta-purple;
+            }
+          }
+          &.pink > input {
+            border: 1px solid $cta-pink;
+            &:checked {
+              background-color: $cta-pink;
+            }
+          }
+          &.y > input {
+            border: 1px solid $cta-yellow;
+            &:checked {
+              background-color: $cta-yellow;
+            }
+          }
+        }
+      }
+    }
+    #markerSize {
+      height: 30px;
+      width: 145px;
+    }
+    .wrap-inline {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
       h4 {
-        margin-bottom: 4px;
-      }
-      @media screen and (max-width: 992px) {
-        .filters-list {
-          padding: 0;
-          list-style: none;
-          li {
-            display: inline-block;
-          }
-          input {
-            height: 30px;
-            width: 30px;
-            -webkit-appearance: none;
-          }
-          .train-line {
-            &.red > input {
-              border: 1px solid $cta-red;
-              &:checked {
-                background-color: $cta-red;
-              }
-            }
-            &.blue > input {
-              border: 1px solid $cta-blue;
-              &:checked {
-                background-color: $cta-blue;
-              }
-            }
-            &.brn > input {
-              border: 1px solid $cta-brown;
-              &:checked {
-                background-color: $cta-brown;
-              }
-            }
-            &.g > input {
-              border: 1px solid $cta-green;
-              &:checked {
-                background-color: $cta-green;
-              }
-            }
-            &.org > input {
-              border: 1px solid $cta-orange;
-              &:checked {
-                background-color: $cta-orange;
-              }
-            }
-            &.p > input {
-              border: 1px solid $cta-purple;
-              &:checked {
-                background-color: $cta-purple;
-              }
-            }
-            &.pink > input {
-              border: 1px solid $cta-pink;
-              &:checked {
-                background-color: $cta-pink;
-              }
-            }
-            &.y > input {
-              border: 1px solid $cta-yellow;
-              &:checked {
-                background-color: $cta-yellow;
-              }
-            }
-          }
-        }
-      }
-      #markerSize {
-        height: 30px;
-        width: 145px;
-      }
-      .wrap-inline {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        h4 {
-          padding-right: 32px;
-        }
+        padding-right: 32px;
       }
     }
   }
@@ -140,13 +146,14 @@
       list-style: none;
       padding: 0;
     }
-    .train-line {
+    .pane-content .filters-list .train-line {
       display: flex;
       justify-content: space-between;
       padding: 5px 35px;
       text-transform: capitalize;
       label {
         line-height: 2;
+        display: block;
       }
     }
     .checkbox-wrapper > input:checked {

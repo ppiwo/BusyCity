@@ -49,9 +49,6 @@
       .filters-list {
         padding: 0;
         list-style: none;
-        label {
-          display: block;
-        }
         li {
           display: inline-block;
         }
@@ -124,6 +121,7 @@
         padding-right: 32px;
       }
     }
+  }
 
   @media screen and (min-width: 992px) {
     .pane-content {
@@ -159,29 +157,29 @@
       background-color: #ffffff;
     }
 
-        .train-line.red {
-            background-color: $cta-red;
-        }
-        .train-line.blue {
-            background-color: $cta-blue;
-        }
-        .train-line.brn {
-            background-color: $cta-brown;
-        }
-        .train-line.g {
-            background-color: $cta-green;
-        }
-        .train-line.org {
-            background-color: $cta-orange;
-        }
-        .train-line.p {
-            background-color: $cta-purple;
-        }
-        .train-line.pink {
-            background-color: $cta-pink;
-        }
-        .train-line.y {
-            background-color: #a99a00;
-        }
+    .train-line.red {
+      background-color: $cta-red;
     }
+    .train-line.blue {
+      background-color: $cta-blue;
+    }
+    .train-line.brn {
+      background-color: $cta-brown;
+    }
+    .train-line.g {
+      background-color: $cta-green;
+    }
+    .train-line.org {
+      background-color: $cta-orange;
+    }
+    .train-line.p {
+      background-color: $cta-purple;
+    }
+    .train-line.pink {
+      background-color: $cta-pink;
+    }
+    .train-line.y {
+      background-color: #a99a00;
+    }
+  }
 }

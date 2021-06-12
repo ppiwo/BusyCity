@@ -2,50 +2,43 @@
 @use './bottom-drawer-settings';
 
 #bottom-drawer {
-    position: fixed;
-    bottom: var(--bottom-bar-height);
+  position: fixed;
+  bottom: var(--bottom-bar-height);
 
+  .drawer-pane {
+    position: absolute;
+    top: 0;
+    width: 100vw;
+    transition: transform 0.46s ease-in-out;
+    height: 400px;
+    &.active {
+      transform: translateY(-100%);
+    }
+    .coming-soon {
+      padding-top: 15px;
+    }
+  }
+
+  @media screen and (min-width: 992px) {
+    top: 135px;
+    bottom: unset;
+    width: 30vw;
+    left: 100%;
+    z-index: 2;
+    &.dt-active {
+      left: 0;
+    }
     .drawer-pane {
-        position: absolute;
-        top: 0;
-        width: 100vw;
-        transition: transform 0.46s ease-in-out;
-        height: 400px;
-        background-color: #292f36;
-        .pane-header {
-            background-color: #3dd598;
-            padding: 0 24px;
-            h2 {
-                padding: 8px 0;
-            }
-        }
-        &.active {
-            transform: translateY(-100%);
-        }
-        .coming-soon {
-            padding-top: 15px;
-        }
+      width: 100%;
+      &.active {
+        transform: translate(0);
+      }
+      &:not(.dt-active) {
+        display: none;
+      }
+      .pane-header {
+        display: none;
+      }
     }
-
-    @media screen and (min-width: 992px) {
-        top: 135px;
-        width: 370px;
-        left: 100%;
-        z-index: 2;
-        &.dt-active {
-            left: 0;
-        }
-        .drawer-pane {
-            width: 100%;
-            &.active {
-                transform: translate(0);
-            }
-            &:not(.dt-active) {
-                display: none;
-            }
-            .pane-header {
-                display: none;
-            }
-        }
-    }
+  }
 }

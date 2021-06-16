@@ -1,7 +1,13 @@
 @use '../utilities' as *;
 
-#drawer-settings {
+.drawer-pane {
   background-color: #292f36;
+  &#drawer-about .pane-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
   .pane-header {
     background-color: #3dd598;
     padding: 0 24px;
@@ -11,6 +17,7 @@
   }
   .pane-content {
     padding: 0 24px;
+    height: 100%;
     .pane-tabs {
       padding: 25px 0;
       display: flex;

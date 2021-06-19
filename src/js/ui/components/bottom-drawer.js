@@ -3,7 +3,7 @@ import { bottomDrawerContent } from '../ui-content';
 import { initMarkerResize } from './marker-resize';
 
 export const initDrawer = () => {
-  templateBottomDrawer();
+  templateBottomDrawer(bottomDrawerContent);
   paneTabHandler();
   initMarkerResize();
 };

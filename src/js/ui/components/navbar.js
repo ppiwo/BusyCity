@@ -1,6 +1,7 @@
 import navBar from '../../../templates/navbar.hbs';
 import { icons } from '../ui-content';
 import { initLocate } from './locate';
+import { closeInfoWindow } from '../../map/build-map';
 
 export const initNavBar = () => {
   templateNavbar();
@@ -34,6 +35,7 @@ const navBarDrawerEvents = () => {
 
   navBarIcons.forEach((icon) => {
     icon.parentElement.addEventListener('click', () => {
+      closeInfoWindow();
       navBarIcons.forEach((icon) => icon.classList.remove('active', 'dt-active'));
       icon.classList.add('active', 'dt-active');
       const drawerOpenId = icon.parentElement.getAttribute('data-open'),
@@ -67,12 +69,26 @@ const navBarDrawerEvents = () => {
 };
 
 /**
+ * Close all drawers
+ */
+  export const closeAllDrawers = () => {
+  const bottomDrawer = document.getElementById('bottom-drawer'),
+    drawerPanes = bottomDrawer.querySelectorAll('.drawer-pane'),
+    navBar = document.getElementById('navbar');
+  
+  bottomDrawer.classList.remove('dt-active', 'active')
+  navBar.classList.remove('dt-active', 'active');
+  drawerPanes.forEach((pane) => pane.classList.remove('active'));
+}
+
+/**
  * Desktop nav functionality is a bit different - this function handles DT navigation
  */
 const toggleDtNav = () => {
   const navBar = document.getElementById('navbar'),
     navBarToggler = navBar.querySelector('[data-toggle-dt-nav]'),
-    bottomDrawer = document.getElementById('bottom-drawer');
+    bottomDrawer = document.getElementById('bottom-drawer'),
+    drawerSettings = document.querySelectorAll('drawer-settings');
 
   navBarToggler.addEventListener('click', (e) => {
     navBar.classList.toggle('dt-active');

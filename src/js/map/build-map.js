@@ -1,6 +1,7 @@
 import trainInfoTemplate from '../../templates/trainInfo.hbs';
 import { initTrainFilters } from '../ui/components/filter-trains';
 import { plotTrains } from './plot-trains';
+import { closeAllDrawers } from '../ui/components/navbar';
 
 const trainLinesKmz = 'http://patpiwo.dev/projects/busy-city/map-data/cta_el_tracks.kmz';
 
@@ -31,10 +32,8 @@ export function initMap() {
 
   // When any part of the map except the marker or infowindow is clicked
   map.addListener('click', () => {
-    if (infoWindowOpen) {
-      infoWindowOpen.infoWindow.close();
-      infoWindowOpen = undefined;
-    }
+    closeInfoWindow();
+    closeAllDrawers();
   });
   initTrainFilters();
   plotTrains();
@@ -213,6 +212,13 @@ const updateInfoWindow = (markerInfo) => {
 const currentInfoWindow = (markerInfo) => {
   if (infoWindowOpen.trainID === markerInfo.trainID) return true;
 };
+
+export const closeInfoWindow = () => {
+  if (infoWindowOpen) {
+    infoWindowOpen.infoWindow.close();
+    infoWindowOpen = undefined;
+  }
+}
 
 /**
  * Pans map to the specified lat/long value

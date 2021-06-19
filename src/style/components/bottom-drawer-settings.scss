@@ -16,10 +16,10 @@
     }
   }
   .pane-content {
-    padding: 0 24px;
+    padding: 25px 24px 0 24px;
     height: 100%;
     .pane-tabs {
-      padding: 25px 0;
+      padding: 0 0 25px 0;
       display: flex;
       justify-content: center;
       .section-label {
@@ -60,8 +60,8 @@
           display: inline-block;
         }
         input {
-          height: 30px;
-          width: 30px;
+          height: 24px;
+          width: 24px;
           -webkit-appearance: none;
         }
         .train-line {
@@ -119,6 +119,7 @@
     #markerSize {
       height: 30px;
       width: 145px;
+      margin-top: 8px;
     }
     .wrap-inline {
       display: flex;
@@ -132,7 +133,7 @@
 
   @media screen and (min-width: 992px) {
     .pane-content {
-      padding: 0 50px;
+      padding: unset 50px;
       #train #markerSize {
         height: 42px;
         width: 175px;

@@ -35,7 +35,6 @@ const navBarDrawerEvents = () => {
 
   navBarIcons.forEach((icon) => {
     icon.parentElement.addEventListener('click', () => {
-      closeInfoWindow();
       navBarIcons.forEach((icon) => icon.classList.remove('active', 'dt-active'));
       icon.classList.add('active', 'dt-active');
       const drawerOpenId = icon.parentElement.getAttribute('data-open'),
@@ -63,7 +62,7 @@ const navBarDrawerEvents = () => {
         drawerToOpen.classList.add('active', 'dt-active');
       }
     } else {
-      if (drawerToOpen) drawerAlreadyOpen.classList.remove('active', 'dt-active');
+      if (drawerToOpen) drawerAlreadyOpen.classList.remove('active');
     }
   };
 };

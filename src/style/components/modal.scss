@@ -13,9 +13,14 @@
       z-index: 3;
       background-color: #22343c;
       border-radius: 10px;
+      width: 80vw;
       .modal-header {
         display: flex;
         justify-content: space-between;
+        align-items: flex-end;
+        border-bottom: 1px solid #3dd598;
+        padding: 13px 15px;
+        padding-bottom: 13px;
         .modal-close {
           cursor: pointer;
         }
@@ -23,7 +28,14 @@
       .modal-body {
         text-align: center;
         padding: 50px 20px;
+        font-size: 0.875rem;
       }
+    }
+  }
+  @media screen and (min-width: 925px) {
+    .modal-backdrop .modal-content {
+      margin: 20px 24px;
+      width: 400px;
     }
   }
 }

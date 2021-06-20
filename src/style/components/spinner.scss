@@ -14,7 +14,9 @@
     opacity: 100;
   }
   padding: 25px;
-  .spinner-text { line-height: 1.5; }
+  .spinner-text {
+    line-height: 1.5;
+  }
   .loader {
     // Spinner style courtesey of https://projects.lukehaas.me/css-loaders/
     font-size: 10px;
@@ -77,6 +79,12 @@
     100% {
       -webkit-transform: rotate(360deg);
       transform: rotate(360deg);
+    }
+  }
+
+  @media screen and (min-width: 925px) {
+    &.show {
+      top: 50%;
     }
   }
 }

@@ -1,5 +1,6 @@
 import { panMap } from '../../map/build-map';
 import { showSpinner, hideSpinner } from './spinner';
+import { closeAllDrawers } from '../components/navbar';
 import modal from './modal';
 
 /**
@@ -14,7 +15,11 @@ export const initLocate = () => {
  */
 const setEventListener = () => {
   const locateBtn = document.querySelector('[data-locate]');
-  locateBtn.addEventListener('click', () => locateUser());
+  locateBtn.addEventListener('click', () => { 
+    closeAllDrawers();
+    locateUser()
+  });
+
 };
 
 /**

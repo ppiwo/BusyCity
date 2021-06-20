@@ -217,6 +217,7 @@ export const closeInfoWindow = () => {
   if (infoWindowOpen) {
     infoWindowOpen.infoWindow.close();
     infoWindowOpen = undefined;
+    map.setZoom(10)
   }
 }
 

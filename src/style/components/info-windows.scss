@@ -17,18 +17,20 @@
     .next-stop {
       margin-bottom: 5px;
       margin-top: 0;
-      font-size: 1.125rem;
+      font-size: 0.95rem;
+      font-weight: 500;
     }
     .calculated-arrival {
       margin-top: 0;
       margin-bottom: 0;
-      font-size: 1.125rem;
+      font-size: 0.95rem;
+      font-weight: 500;
     }
     .delayed {
       color: $cta-red;
       font-size: 0.875rem;
       font-weight: 600;
-      font-size: .875rem;
+      font-size: 0.875rem;
     }
   }
 }

@@ -31,7 +31,7 @@ export const setNavBarHeight = () => {
  */
 const navBarDrawerEvents = () => {
   const navBarItem = document.querySelectorAll('[data-open]'),
-    navBarIcons = document.querySelectorAll('.nav-icon');
+    navBarIcons = document.querySelectorAll('.nav-icon.drawer');
 
   navBarIcons.forEach((icon) => {
     icon.parentElement.addEventListener('click', () => {

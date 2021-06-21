@@ -7,7 +7,8 @@ const trainLinesKmz = 'http://patpiwo.dev/projects/busy-city/map-data/cta_el_tra
 
 export let map;
 export let trainMarkers = {};
-let infoWindowOpen = undefined;
+let infoWindowOpen = undefined,
+  previousZoom;
 
 /**
  * Init map and add KML layers with CTA Routes & Train Stations
@@ -184,6 +185,7 @@ const buildInfoWindow = (map, marker, markerInfo) => {
     content: trainInfo(markerInfo)
   });
 
+  previousZoom = map.getZoom();
   map.zoom = 16;
   map.panTo(marker.getPosition());
   infoWindow.open(map, marker);
@@ -217,7 +219,7 @@ export const closeInfoWindow = () => {
   if (infoWindowOpen) {
     infoWindowOpen.infoWindow.close();
     infoWindowOpen = undefined;
-    map.setZoom(10)
+    map.setZoom(previousZoom);
   }
 }
 

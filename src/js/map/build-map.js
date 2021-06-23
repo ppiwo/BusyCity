@@ -1,7 +1,7 @@
-import trainInfoTemplate from '../../templates/trainInfo.hbs';
 import { initTrainFilters } from '../ui/components/filter-trains';
 import { plotTrains } from './plot-trains';
 import { closeAllDrawers } from '../ui/components/navbar';
+import infoWindow from './info-window';
 
 const trainLinesKmz = 'http://patpiwo.dev/projects/busy-city/map-data/cta_el_tracks.kmz';
 
@@ -64,7 +64,7 @@ export let addMarker = (markerInfo) => {
       // Add listener for train marker popup on click
       marker.addListener('click', () => {
         if (infoWindowOpen) infoWindowOpen.infoWindow.close();
-        buildInfoWindow(map, marker, markerInfo);
+        infoWindow.build(marker, markerInfo);
       });
 
       // Marker already exists, let's update it
@@ -73,8 +73,8 @@ export let addMarker = (markerInfo) => {
     }
   }
 
-  // If the current trainData is an opened windowInfo, we need to update infoWindow
-  if (infoWindowOpen && currentInfoWindow(markerInfo) === true) updateInfoWindow(markerInfo);
+  // See if current marker's infowindow is open & update
+  infoWindow.update(markerInfo);
 };
 
 /**
@@ -155,55 +155,6 @@ let updateMarker = (markerInfo) => {
     markerNewPosition = new google.maps.LatLng(markerInfo.lat, markerInfo.lon);
 
   trainMarkers[markerInfo.lineColor + '_' + markerInfo.trainID].setPosition(markerNewPosition);
-};
-
-/**
- * Parses markerInfo into HTML template using Handlebars
- * REFERENCE: https://developers.google.com/maps/documentation/javascript/infowindows
- * @param {Object} markerInfo - An object containing data for each train's InfoWindow
- * @returns {Object} HTML content to be displayed in infoWindow
- */
-export let trainInfo = (markerInfo) => {
-  const infoWindowElement = document.createElement('section');
-
-  infoWindowElement.id = 'custom-info-window';
-  infoWindowElement.innerHTML = trainInfoTemplate(markerInfo);
-  infoWindowElement.classList.add(`info-window__${markerInfo.lineColor}`);
-
-  return infoWindowElement;
-};
-
-/**
- * Builds and opens a infoWindow on the map
- * @param {Object} map Map on which infoWindow will be place
- * @param {Object} marker  Marker which this infoWindow belongs to
- * @param {Object} markerInfo Data to be displayed inside of the infoWindow
- * @returns {Object} infoWindow object
- */
-const buildInfoWindow = (map, marker, markerInfo) => {
-  const infoWindow = new google.maps.InfoWindow({
-    content: trainInfo(markerInfo)
-  });
-
-  previousZoom = map.getZoom();
-  map.zoom = 16;
-  map.panTo(marker.getPosition());
-  infoWindow.open(map, marker);
-  infoWindowOpen = { infoWindow, marker, trainID: markerInfo.trainID };
-
-  return infoWindow;
-};
-
-/**
- * Update the infoWindow object
- * @param {Object} markerInfo
- */
-const updateInfoWindow = (markerInfo) => {
-  const infoWindowElement = document.querySelector('#custom-info-window'),
-    markerPosition = infoWindowOpen.marker.getPosition();
-
-  infoWindowElement.innerHTML = trainInfoTemplate(markerInfo);
-  map.panTo(markerPosition);
 };
 
 /**

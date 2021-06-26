@@ -7,8 +7,7 @@ const trainLinesKmz = 'http://patpiwo.dev/projects/busy-city/map-data/cta_el_tra
 
 export let map;
 export let trainMarkers = {};
-let infoWindowOpen = undefined,
-  previousZoom;
+let infoWindowOpen = undefined;
 
 /**
  * Init map and add KML layers with CTA Routes & Train Stations
@@ -33,7 +32,7 @@ export function initMap() {
 
   // When any part of the map except the marker or infowindow is clicked
   map.addListener('click', () => {
-    closeInfoWindow();
+    infoWindow.close();
     closeAllDrawers();
   });
   initTrainFilters();
@@ -63,8 +62,8 @@ export let addMarker = (markerInfo) => {
 
       // Add listener for train marker popup on click
       marker.addListener('click', () => {
-        if (infoWindowOpen) infoWindowOpen.infoWindow.close();
-        infoWindow.build(marker, markerInfo);
+        infoWindow.close();
+        infoWindow.open(marker, markerInfo);
       });
 
       // Marker already exists, let's update it
@@ -84,7 +83,6 @@ export const buildMarker = (lineColorString, markerSize) => {
   if (lineColor) {
     const marker = {
       path: google.maps.SymbolPath.CIRCLE,
-      //rotation: 180,
       scale: markerSize || 8,
       strokeColor: 'white',
       strokeWeight: 1,
@@ -97,8 +95,8 @@ export const buildMarker = (lineColorString, markerSize) => {
 
 /**
  * Returns the hex value for the official CTA colors for each line
- * @param {String} lineColorString 
- * @returns 
+ * @param {String} lineColorString
+ * @returns
  */
 const lineColor = (lineColorString) => {
   let lineColorValue;
@@ -165,14 +163,6 @@ let updateMarker = (markerInfo) => {
 const currentInfoWindow = (markerInfo) => {
   if (infoWindowOpen.trainID === markerInfo.trainID) return true;
 };
-
-export const closeInfoWindow = () => {
-  if (infoWindowOpen) {
-    infoWindowOpen.infoWindow.close();
-    infoWindowOpen = undefined;
-    map.setZoom(previousZoom);
-  }
-}
 
 /**
  * Pans map to the specified lat/long value

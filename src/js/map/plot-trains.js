@@ -1,5 +1,6 @@
 import { getTrains } from '../api';
 import { addMarker } from './build-map';
+import marker from './marker';
 
 /**
  * Calls API function to retrieve CTA data.
@@ -37,7 +38,7 @@ export const plotTrains = async () => {
             nextStop: train.nextStaNm,
             destination: train.destNm
           };
-          addMarker(markerInfo);
+          marker.add(markerInfo);
         });
       } else {
         //handle train lines where there is only 1 or 0 trains running the route
@@ -57,7 +58,7 @@ export const plotTrains = async () => {
             nextStop: train.nextStaNm,
             destination: train.destNm
           };
-          addMarker(markerInfo);
+          marker.add(markerInfo);
         }
       }
     });
@@ -65,3 +66,49 @@ export const plotTrains = async () => {
     console.error(err);
   }
 };
+
+/**
+ * Returns the hex value for the official CTA colors for each line
+ * @param {String} lineColorString
+ * @returns
+ */
+ export const lineColor = (lineColorString) => {
+  let lineColorValue;
+  if (lineColorString) {
+    switch (lineColorString) {
+      case 'red':
+        lineColorValue = '#C60C30';
+        break;
+      case 'blue':
+        lineColorValue = '#00a1de';
+        break;
+      case 'brn':
+        lineColorValue = '#62361b';
+        break;
+      case 'g':
+        lineColorValue = '#009b3a';
+        break;
+      case 'org':
+        lineColorValue = '#f9461c';
+        break;
+      case 'p':
+        lineColorValue = '#522398';
+        break;
+      case 'pink':
+        lineColorValue = '#e27ea6';
+        break;
+      case 'y':
+        lineColorValue = '#f9e300';
+        break;
+      case 'grey':
+        lineColorValue = '#565a5c';
+        break;
+    }
+    return lineColorValue;
+  }
+};
+
+export default {
+  get: getTrains,
+  lineColor: lineColor
+}

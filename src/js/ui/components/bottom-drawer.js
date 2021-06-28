@@ -1,9 +1,9 @@
-import bottomDrawer from '../../../templates/bottom-drawer.hbs';
 import { bottomDrawerContent } from '../ui-content';
 import { initMarkerResize } from './marker-resize';
+import template from '../../../templates/bottom-drawer.hbs';
 
-export const initDrawer = () => {
-  templateBottomDrawer(bottomDrawerContent);
+const init = () => {
+  templateBottomDrawer();
   paneTabHandler();
   initMarkerResize();
 };
@@ -11,13 +11,14 @@ export const initDrawer = () => {
 /**
  * Call Handlebars to template the bottom drawers
  */
-const templateBottomDrawer = () => (document.getElementById('bottom-drawer').innerHTML = bottomDrawer(bottomDrawerContent));
+const templateBottomDrawer = () => document.getElementById('bottom-drawer').innerHTML = template(bottomDrawerContent);
 
 /**
  * Handles events on inactive pane tab headers
  */
 const paneTabHandler = () => {
   const tabToggles = document.querySelectorAll('[data-toggle-tab]');
+
   //remove active on all tabs
   tabToggles.forEach((tab) => {
     tab.addEventListener('click', (e) => {
@@ -41,14 +42,13 @@ const paneTabAction = (e, tabToggles) => {
       return document.getElementById(tabId);
     });
 
-  tabToggles.forEach((tabToggle) => {
-    tabToggle.classList.remove('active');
-  });
-
-  tabContentElements.forEach((tabContentPane) => {
-    tabContentPane.classList.remove('active');
-  });
+  tabToggles.forEach((tabToggle) => tabToggle.classList.remove('active'));
+  tabContentElements.forEach((tabContentPane) =>tabContentPane.classList.remove('active'));
 
   paneToShow.classList.add('active');
   e.target.classList.add('active');
 };
+
+export default {
+  init: init
+}

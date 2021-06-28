@@ -14,6 +14,6 @@ export const showSpinner = (spinnerMessage) => {
  */
 export const hideSpinner = () => {
   const spinnerElement = document.getElementById('spinner');
-  if (spinnerElement.querySelector('.spinner-text')) spinnerElement.querySelector('.spinner-text').innerHTML = '';
   spinnerElement.classList.remove('show');
+  if (spinnerElement.querySelector('.spinner-text')) spinnerElement.querySelector('.spinner-text').innerHTML = '';
 };

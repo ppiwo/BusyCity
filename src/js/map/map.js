@@ -1,5 +1,5 @@
 import { initTrainFilters } from '../ui/components/filter-trains';
-import { closeAllDrawers } from '../ui/components/navbar';
+import navbar from '../ui/components/navbar';
 import infoWindow from './info-window';
 import trains from './trains';
 
@@ -32,7 +32,7 @@ function init() {
   // When any part of the map except the marker or infowindow is clicked
   map.addListener('click', () => {
     infoWindow.close();
-    closeAllDrawers();
+    navbar.closeAllDrawers();
   });
   
   initTrainFilters();

@@ -1,10 +1,10 @@
-import { initNavBar, setNavBarHeight } from './components/navbar';
-import { initDrawer } from './components/bottom-drawer';
+import navbar from './components/navbar';
+import bottomDrawer from './components/bottom-drawer';
 
 const initUI = () => {
-  initDrawer();
-  initNavBar();
-  updateOnResize(setNavBarHeight);
+  bottomDrawer.init();
+  navbar.init();
+  updateOnResize(navbar.setHeightVar);
 };
 
 /**

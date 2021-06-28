@@ -1,8 +1,10 @@
-import navBar from '../../../templates/navbar.hbs';
+import template from '../../../templates/navbar.hbs';
 import { icons } from '../ui-content';
 import { initLocate } from './locate';
 
-export const initNavBar = () => {
+const navBarElement = document.getElementById('navbar');
+
+const init = () => {
   templateNavbar();
   toggleDtNav();
   setNavBarHeight();
@@ -13,15 +15,13 @@ export const initNavBar = () => {
 /**
  * Call handlebars to template the nav bar
  */
-const templateNavbar = () => (document.getElementById('navbar').innerHTML = navBar(icons));
+const templateNavbar = () => navBarElement.innerHTML = template(icons);
 
 /**
  * Set NavBar root variable
  */
-export const setNavBarHeight = () => {
-  const navBar = document.getElementById('navbar'),
-    navBarHeight = navBar.offsetHeight;
-
+const setNavBarHeight = () => {
+  const navBarHeight = navBarElement.offsetHeight;
   document.documentElement.style.setProperty('--bottom-bar-height', `${navBarHeight}px`);
 };
 
@@ -29,17 +29,17 @@ export const setNavBarHeight = () => {
  * Handles all events for the navBarDrawers
  */
 const navBarDrawerEvents = () => {
-  const navBarItem = document.querySelectorAll('[data-open]'),
-    navBarIcons = document.querySelectorAll('.nav-icon.drawer');
+  const navBarIcons = navBarElement.querySelectorAll('.nav-icon.drawer');
 
   navBarIcons.forEach((icon) => {
     icon.parentElement.addEventListener('click', () => {
       navBarIcons.forEach((icon) => icon.classList.remove('active', 'dt-active'));
-      icon.classList.add('active', 'dt-active');
       const drawerOpenId = icon.parentElement.getAttribute('data-open'),
         drawerToBeOpened = document.querySelector(`#${drawerOpenId}`),
         allDrawers = document.querySelectorAll('.drawer-pane'),
         drawerAlreadyOpen = document.querySelector('.drawer-pane.active');
+
+      icon.classList.add('active', 'dt-active');
       handleDrawers(allDrawers, drawerToBeOpened, drawerAlreadyOpen);
     });
   });
@@ -53,9 +53,10 @@ const navBarDrawerEvents = () => {
     if (drawerToOpen != drawerAlreadyOpen) {
       allDrawers.forEach((drawer) => drawer.classList.remove('active', 'dt-active'));
       if (drawerAlreadyOpen) {
-        // Set delay to allow first animation to complete
+        drawerToOpen.classList.add('dt-active');
+        // Set delay to allow first animation to complete - mobile only
         setTimeout(() => {
-          drawerToOpen.classList.add('active', 'dt-active');
+          drawerToOpen.classList.add('active');
         }, 500);
       } else {
         drawerToOpen.classList.add('active', 'dt-active');
@@ -69,15 +70,15 @@ const navBarDrawerEvents = () => {
 /**
  * Close all drawers
  */
-  export const closeAllDrawers = () => {
+const closeAllDrawers = () => {
   const bottomDrawer = document.getElementById('bottom-drawer'),
     drawerPanes = bottomDrawer.querySelectorAll('.drawer-pane'),
     navBar = document.getElementById('navbar');
-  
-  bottomDrawer.classList.remove('dt-active', 'active')
+
+  bottomDrawer.classList.remove('dt-active', 'active');
   navBar.classList.remove('dt-active', 'active');
   drawerPanes.forEach((pane) => pane.classList.remove('active'));
-}
+};
 
 /**
  * Desktop nav functionality is a bit different - this function handles DT navigation
@@ -85,11 +86,16 @@ const navBarDrawerEvents = () => {
 const toggleDtNav = () => {
   const navBar = document.getElementById('navbar'),
     navBarToggler = navBar.querySelector('[data-toggle-dt-nav]'),
-    bottomDrawer = document.getElementById('bottom-drawer'),
-    drawerSettings = document.querySelectorAll('drawer-settings');
+    bottomDrawer = document.getElementById('bottom-drawer');
 
   navBarToggler.addEventListener('click', (e) => {
     navBar.classList.toggle('dt-active');
     bottomDrawer.classList.toggle('dt-active');
   });
 };
+
+export default {
+  init: init,
+  setHeightVar: setNavBarHeight,
+  closeAllDrawers: closeAllDrawers
+}

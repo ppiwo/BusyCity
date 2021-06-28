@@ -1,4 +1,4 @@
-import { panMap } from '../../map/build-map';
+import { panMap } from '../../map/map';
 import { showSpinner, hideSpinner } from './spinner';
 import { closeAllDrawers } from '../components/navbar';
 import modal from './modal';

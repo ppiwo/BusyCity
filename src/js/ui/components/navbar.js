@@ -1,7 +1,6 @@
 import navBar from '../../../templates/navbar.hbs';
 import { icons } from '../ui-content';
 import { initLocate } from './locate';
-import { closeInfoWindow } from '../../map/build-map';
 
 export const initNavBar = () => {
   templateNavbar();

@@ -1,7 +1,7 @@
 import "./style/Main.scss";
 import initUI from "./js/ui/ui";
-import { initMap } from "./js/map/build-map";
-import { plotTrains } from "./js/map/plot-trains";
+import buildMap from "./js/map/map";
+import trains from "./js/map/trains";
 
 /**
  * ENTRY POINT
@@ -10,8 +10,8 @@ import { plotTrains } from "./js/map/plot-trains";
  */
 
 // Assign to window namespace - this is called by callback param in embeded Google map
-window.initMap = initMap;
+window.initMap = buildMap.init;
 initUI();
 setInterval(function () {
-  plotTrains();
+  trains.plot();
 }, 10000);

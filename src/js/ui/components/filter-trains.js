@@ -1,4 +1,4 @@
-import { trainMarkers } from '../../map/build-map';
+import { trainMarkers } from '../../map/map';
 
 /**
  * Initialize Train Filters

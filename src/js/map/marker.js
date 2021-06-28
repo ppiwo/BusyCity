@@ -1,19 +1,18 @@
-import { map, trainMarkers } from './build-map';
+import { map, trainMarkers } from './map';
 import infoWindow from './info-window';
-import train from './plot-trains';
 
 /**
  * Delegate marker actions, if a marker exists, we update it, if not we add it
  * @param {Object} markerInfo Contains info for each marker and it's infoWindow
  */
-export let addMarker = (markerInfo) => {
+export let addMarker = (markerInfo) => {  
   if (markerInfo.type === 'train') markerExists(markerInfo) ? updateTrainMarker(markerInfo) : addTrainMarker(markerInfo);
 };
 
 /**
  * Check if there is an existing marker for this train already on the map
  * @param {Object} markerInfo Marker we are looking for
- * @returns {number}
+ * @returns {Number}
  */
 const markerExists = (markerInfo) => {
   // Only trains are supported at this moment
@@ -25,18 +24,18 @@ const markerExists = (markerInfo) => {
 
 /**
  *  Build a custom marker Icon based on markerInfo
- *  @param {String} lineColorString the train line's CTA color in string form (i.e. 'red')
+ *  @param {String} lineColorHex
+ * @returns {Object}
  */
-const buildIcon = (lineColorString, markerSize = 8) => {
+const buildIcon = (lineColorHex, markerSize = 8) => {
   const marker = {
     path: google.maps.SymbolPath.CIRCLE,
     scale: markerSize,
     strokeColor: 'white',
     strokeWeight: 1,
-    fillColor: train.lineColor(lineColorString),
+    fillColor: lineColorHex,
     fillOpacity: 1.0
   };
-
   return marker;
 };
 
@@ -46,10 +45,10 @@ const buildIcon = (lineColorString, markerSize = 8) => {
  * @param {Object} markerInfo
  */
 const addTrainMarker = (markerInfo) => {
-  const { lat, lon, lineColor, trainID } = markerInfo;
+  const { lat, lon, lineColorHex, lineColor, trainID } = markerInfo;
   const marker = new google.maps.Marker({
     position: { lat: lat, lng: lon },
-    icon: buildIcon(lineColor),
+    icon: buildIcon(lineColorHex),
     size: new google.maps.Size(18, 15),
     map: map
   });

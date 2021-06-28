@@ -1,4 +1,4 @@
-import { trainMarkers, buildMarker } from "../../map/build-map";
+import { trainMarkers } from "../../map/map";
 
 /**
  * Initialize train marker resize feature

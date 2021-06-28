@@ -1,5 +1,5 @@
 import trainInfoTemplate from '../../templates/trainInfo.hbs';
-import { map } from './build-map';
+import { map } from './map';
 
 let infoWindowOpen = false,
   infoWindow;

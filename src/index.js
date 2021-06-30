@@ -6,7 +6,7 @@ import trains from "./js/map/trains";
 /**
  * ENTRY POINT
  * Initalizes Google Map,
- * refreshes train markers every 5 seconds (5000ms)
+ * refreshes train markers every 10 seconds (10000ms) - train position tends to update every 20s, but other info is quicker
  */
 
 // Assign to window namespace - this is called by callback param in embeded Google map

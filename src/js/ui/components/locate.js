@@ -1,20 +1,19 @@
 import { panMap } from '../../map/map';
-import { showSpinner, hideSpinner } from './spinner';
+import spinner from './spinner';
 import navbar from '../components/navbar';
 import modal from './modal';
 
 /**
  * Initialize location feature
  */
-export const initLocate = () => {
-  setEventListener();
-};
+const init = () => setEventListener();
 
 /**
  * Set listener on location btn
  */
 const setEventListener = () => {
   const locateBtn = document.querySelector('[data-locate]');
+
   locateBtn.addEventListener('click', () => { 
     navbar.closeAllDrawers();
     locateUser()
@@ -26,9 +25,10 @@ const setEventListener = () => {
  * Ask user for their location
  */
 const locateUser = () => {
-  // Display spinner
-  showSpinner('Fetching location please wait');
   const options = { enableHighAccuracy: true };
+
+  // Display spinner
+  spinner.show('Fetching location please wait');
   navigator.geolocation.getCurrentPosition(checkBoundries, locationError, options);
 };
 
@@ -49,14 +49,14 @@ const checkBoundries = (location) => {
     longitude <= chicagoBoundries.long.start &&
     longitude >= chicagoBoundries.long.end
   ) {
-    hideSpinner();
+    spinner.hide();
     positionMap({ lat: latitude, lng: longitude });
   }
   else {
     // User not in not within Chicago boundries
-    hideSpinner();
+    spinner.hide();
+    // Show modal 'This feature only works for users within the city of Chicago'
     modal({header: 'Boundary Error', body: 'Location detected as out of Chicago bounds. <br> <br> This feature is currently only avaliable for users located in Chicago.'});
-      // Show modal 'This feature only works for users within the city of Chicago'
   }
 };
 
@@ -64,7 +64,7 @@ const checkBoundries = (location) => {
  * User's browser doesn't support geolocation or user denied permission
  */
 const locationError = () => {
-  hideSpinner();
+  spinner.hide();
   // Show location error modal
   modal({header: 'Location Error', body: 'We were unable to obtain your location. <br> Please make sure location services are enabled.'});
 };
@@ -77,3 +77,7 @@ const locationError = () => {
 const positionMap = (latitude, longitude) => {
   panMap(latitude, longitude);
 };
+
+export default {
+  init: init
+}

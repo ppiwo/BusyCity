@@ -1,11 +1,11 @@
 import { bottomDrawerContent } from '../ui-content';
-import { initMarkerResize } from './marker-resize';
+import markerResize from './marker-resize';
 import template from '../../../templates/bottom-drawer.hbs';
 
 const init = () => {
   templateBottomDrawer();
   paneTabHandler();
-  initMarkerResize();
+  markerResize.init();
 };
 
 /**

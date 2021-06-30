@@ -3,7 +3,7 @@ import { trainMarkers } from "../../map/map";
 /**
  * Initialize train marker resize feature
  */
-export const initMarkerResize = () => {
+const init = () => {
   setEventListener();
 };
 
@@ -12,6 +12,7 @@ export const initMarkerResize = () => {
  */
 const setEventListener = () => {
   const markerSizeInput = document.getElementById("markerSize");
+
   markerSizeInput.addEventListener("change", (e) => changeMarkerSize(parseInt(e.target.value)));
 };
 
@@ -23,7 +24,12 @@ const changeMarkerSize = (newMarkerSize) => {
   for (const marker in trainMarkers) {
     const markerObj = trainMarkers[marker];
     let markerIcon = markerObj.getIcon();
+
     markerIcon.scale = newMarkerSize;
     markerObj.setIcon(markerIcon);
   }
 };
+
+export default {
+  init: init
+}

@@ -1,6 +1,6 @@
 import template from '../../../templates/navbar.hbs';
 import { icons } from '../ui-content';
-import { initLocate } from './locate';
+import locate from './locate';
 
 const navBarElement = document.getElementById('navbar');
 
@@ -9,7 +9,7 @@ const init = () => {
   toggleDtNav();
   setNavBarHeight();
   navBarDrawerEvents();
-  initLocate();
+  locate.init();
 };
 
 /**

@@ -65,6 +65,8 @@ const parseTrainData = (trainData, lineColorString) => {
     nextStop: nextStaNm,
     destination: destNm
   };
+
+  if (markerInfo.trainID === 114) console.log(markerInfo);
   return markerInfo
 }
 

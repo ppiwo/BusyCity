@@ -4,16 +4,14 @@ import bottomDrawer from './components/bottom-drawer';
 const initUI = () => {
   bottomDrawer.init();
   navbar.init();
-  updateOnResize(navbar.setHeightVar);
+  updateOnResize();
 };
 
 /**
  * Update root variables when screen resizes
  */
 function updateOnResize() {
-  window.addEventListener('resize', () => {
-    setNavBarHeight();
-  });
+  window.addEventListener('resize', () => navbar.setHeightVar() );
 }
 
 export default initUI;

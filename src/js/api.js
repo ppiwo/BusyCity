@@ -4,8 +4,7 @@ const apiEndpoints =
   {
     cta: 
     { 
-      train: 'http://lapi.transitchicago.com/api/1.0/ttpositions.aspx', 
-      trainStation: 'http://lapi.transitchicago.com/api/1.0/ttarrivals.aspx'
+      train: 'http://lapi.transitchicago.com/api/1.0/ttpositions.aspx'
     }
   }
 

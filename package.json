@@ -5,8 +5,8 @@
   "private": true,
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack",
-    "dev": "webpack --config webpack.config.dev.js"
+    "start": "webpack serve --open --config webpack.dev.js",
+    "build": "webpack --config webpack.prod.js"
   },
   "repository": {
     "type": "git",

@@ -12,7 +12,7 @@ input.custom-switch {
 }
 
 input.custom-switch:after {
-  content: "";
+  content: '';
   position: absolute;
   top: 1px;
   left: 1px;
@@ -45,9 +45,9 @@ input.custom-switch:checked:after {
     box-shadow: inset -20px 0 0 0 #000000;
     transition-duration: 200ms;
   }
-  
+
   input.dt-custom-switch:after {
-    content: "";
+    content: '';
     position: absolute;
     top: 1px;
     left: 1px;
@@ -57,11 +57,11 @@ input.custom-switch:checked:after {
     border-radius: 50%;
     box-shadow: 2px 4px 6px rgba(0, 0, 0, 0.2);
   }
-  
+
   input.dt-custom-switch:checked {
     box-shadow: inset 20px 0 0 0 #3dd598;
   }
-  
+
   input.dt-custom-switch:checked:after {
     left: 20px;
     box-shadow: -2px 4px 3px rgba(0, 0, 0, 0.05);

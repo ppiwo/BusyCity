@@ -2,13 +2,6 @@
 
 .drawer-pane {
   background-color: #292f36;
-  &#drawer-about .pane-content {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding-top: 0;
-  }
   .pane-header {
     background-color: #3dd598;
     padding: 0 24px;
@@ -134,7 +127,7 @@
 
   @media screen and (min-width: 992px) {
     .pane-content {
-      padding: unset 50px;
+      padding: 25px 50px 0 50px;
       padding-right: 47px;
       padding-left: 47px;
       #train #markerSize {

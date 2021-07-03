@@ -1,6 +1,6 @@
 <h1 align="center">
   <br>
-  <a href="https://patpiwo.dev/projects/busy-city/"><img src="https://github.com/ppiwo/BusyCity/blob/master/images/busy-city-logo.png?raw=true" alt="Markdownify" width="200"></a>
+  <a href="https://patpiwo.dev/projects/busy-city/"><img src="https://github.com/ppiwo/BusyCity/blob/master/images/busy-city-logo.png?raw=true" alt="Markdownify" width="75"></a>
   <br>
   Busy City
   <br>

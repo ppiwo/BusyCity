@@ -4,13 +4,10 @@
   width: 100vw;
   background: #22343c;
   z-index: 2;
-  padding: 3px 0;
+  padding: 12px 0;
   font-size: 0.8rem;
-  ul {
-    display: flex;
-    justify-content: space-evenly;
-    padding: 0;
-  }
+  display: flex;
+  justify-content: space-evenly;
   .nav-icon {
     width: 60px;
     height: 60px;

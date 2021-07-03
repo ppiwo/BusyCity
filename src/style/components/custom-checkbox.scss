@@ -19,7 +19,7 @@
 .checkbox-wrapper > input:checked {
   //border: 1px solid #41B883;
   background-color: #41b883;
-  background-image: url(/src/assets/icons/checkbox-tick.svg);
+  background-image: url(../assets/icons/checkbox-tick.svg);
 }
 
 .checkbox-wrapper > input:checked::after {

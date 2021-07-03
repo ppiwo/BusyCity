@@ -5,6 +5,12 @@
   position: fixed;
   bottom: var(--bottom-bar-height);
 
+  .pane-header {
+    padding: 8px 24px;
+    font-size: 1.125rem;
+    font-weight: bold;
+    background-color: #3dd598;
+  }
   .drawer-pane {
     position: absolute;
     top: 1px;

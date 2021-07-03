@@ -1,3 +1,5 @@
+import "core-js/stable";
+import "regenerator-runtime/runtime";
 import "./style/Main.scss";
 import initUI from "./js/ui/ui";
 import buildMap from "./js/map/map";

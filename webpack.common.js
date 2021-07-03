@@ -29,6 +29,11 @@ module.exports = {
         options: {
           helperDirs: path.resolve(__dirname, 'src', './templates/helpers')
         }
+      },
+      {
+        test: /\.(js)$/,
+        exclude: /node_modules/,
+        use: ['babel-loader']
       }
     ]
   },

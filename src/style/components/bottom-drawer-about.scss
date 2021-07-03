@@ -8,12 +8,17 @@
   }
   section {
     text-align: center;
-    margin-bottom: 30px;
+    margin-bottom: 15px;
     .social-icons {
       margin-top: 10px;
     }
     p {
       margin-top: 0;
+    }
+  }
+  @media screen and (min-width: 925px) {
+    .pane-content {
+      padding-top: 55px;
     }
   }
 }

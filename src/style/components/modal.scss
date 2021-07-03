@@ -7,7 +7,7 @@
     z-index: 3;
     .modal-content {
       position: absolute;
-      top: 50%;
+      top: calc(50% - calc(var(--bottom-bar-height) / 2));
       left: 50%;
       transform: translate(-50%, -50%);
       z-index: 3;
@@ -34,7 +34,7 @@
   }
   @media screen and (min-width: 925px) {
     .modal-backdrop .modal-content {
-      margin: 20px 24px;
+      top: 50%;
       width: 400px;
     }
   }

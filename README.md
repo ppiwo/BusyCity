@@ -1,14 +1,12 @@
-
 <h1 align="center">
   <br>
-  <a href="https://patpiwo.dev/projects/busy-city/"><img src="https://i.imgur.com/yAH0d5X.png" alt="Markdownify" width="200"></a>
+  <a href="https://patpiwo.dev/projects/busy-city/"><img src="https://github.com/ppiwo/BusyCity/blob/master/images/busy-city-logo.png?raw=true" alt="Markdownify" width="200"></a>
   <br>
   Busy City
   <br>
 </h1>
 
 <h4 align="center">Busy City is a modern CTA train tracker. <br> View what Chicago's train system is doing in real time, view estimated arrivals and more!</h4>
-
 
 <p align="center">
   <a href="#key-features">Key Features</a> •
@@ -19,19 +17,20 @@
   <a href="#license">License</a>
 </p>
 
-![screenshot](https://patpiwo.dev/projects/busy-city/github/My-Movie.gif)
+![screenshot](https://github.com/ppiwo/BusyCity/blob/master/images/timelapse.gif?raw=true)
 
 ## Key Features
 
-* Real time train tracking 
+- Real time train tracking
   - See the entirety of the Chicago train system in real time.
-* Mobile Friendly UI
-* Filter trains by line color  
-* Live delay alerts
-* Estimated arrival times
-* Change marker size
+- Mobile Friendly UI
+- Filter trains by line color
+- Live delay alerts
+- Estimated arrival times
+- Change marker size
 
 ## How To Use
+
 A hosted version of this project can be found at <a href="patpiwo.dev/projects/busy-city" target="_blank">patpiwo.dev/projects/busy-city</a>
 
 ## Local Enviornment Configuration
@@ -55,7 +54,9 @@ G_MAP_API_KEY=“[“YOUR GOOGLE MAPS API KEY”]
 $ npm run dev
 
 ```
+
 ### Start a webserver
+
 I recommend using a plugin like <a href="https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer" target="_blank">live-server for VSCode</a>
 
 ## Credits
@@ -83,4 +84,3 @@ MIT
 
 [patpiwo.dev](https://www.patpiwo.dev/) &nbsp;&middot;&nbsp;
 GitHub [@ppiwo](https://github.com/ppiwo)
-

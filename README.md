@@ -1,12 +1,12 @@
 <h1 align="center">
   <br>
-  <a href="https://patpiwo.dev/projects/busy-city/"><img src="https://github.com/ppiwo/BusyCity/blob/master/images/busy-city-logo.png?raw=true" alt="Markdownify" width="75"></a>
+  <a href="https://patpiwo.dev/projects/busy-city/"><img src="https://github.com/ppiwo/BusyCity/blob/master/images/busy-city-logo.png?raw=true" alt="BusyCity" width="75"></a>
   <br>
-  Busy City
+  BusyCity
   <br>
 </h1>
 
-<h4 align="center">Busy City is a modern CTA train tracker. <br> View what Chicago's train system is doing in real time, view estimated arrivals and more!</h4>
+<h4 align="center">BusyCity is a modern CTA train tracker. <br> View what Chicago's train system is doing in real time, view estimated arrivals and more!</h4>
 
 <p align="center">
   <a href="#key-features">Key Features</a> •

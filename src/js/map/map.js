@@ -3,7 +3,7 @@ import navbar from '../ui/components/navbar';
 import infoWindow from './info-window';
 import trains from './trains';
 
-const trainLinesKmz = 'https://patpiwo.dev/projects/busy-city/map-data/cta_el_tracks.kmz';
+const trainLinesKmz = 'https://www.dropbox.com/s/shu56zohfegtxuf/cta_el_tracks.kmz?dl=1';
 
 export let map;
 export let trainMarkers = {};

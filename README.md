@@ -31,7 +31,7 @@
 
 ## How To Use
 
-A hosted version of this project can be found at <a href="patpiwo.dev/projects/busy-city" target="_blank">patpiwo.dev/projects/busy-city</a>
+A hosted version of this project can be found at <a href="https://patpiwo.dev/projects/busy-city" target="_blank">patpiwo.dev/projects/busy-city</a>
 
 ## Local Enviornment Configuration
 
